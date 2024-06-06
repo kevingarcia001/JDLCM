@@ -433,7 +433,7 @@ code {
 }
 
 .page-header {
-	background-image: url("");
+	background-image: url("../images/breadcrumb-bg.jpg");
 	background-size: cover;
 	background-position: bottom left;
 	position: relative;

@@ -5,7 +5,7 @@
                 <div class="col-sm-12">
                     <form method="post" class="md-float-material form-material">
                         <div class="text-center">
-                            <img src="../../assets/dist/img/logo1.png" alt="logo.png">
+                            <img src="../../assets/dist/img/icono.png" alt="logo.png">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -60,4 +60,27 @@
                 </div>
             </div>
         </div>
+        <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="../../assets/dist/css/bootstrap.min.css">
+      <!-- waves.css -->
+      <link rel="stylesheet" href="../../assets/dist/css/waves.min.css" type="text/css" media="all">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="../../assets/dist/css/themify-icons.css">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="../../assets/dist/css/icofont.css">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" type="text/css" href="../../assets/dist/css/font-awesome.min.css">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="../../assets/dist/css/stylelogin.css">
+
+      <script type="text/javascript" src=""></script>
+<script type="text/javascript" src="../../assets/dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/dist/js/popper.min.js"></script>
+<script type="text/javascript" src="../../assets/dist/js/bootstrap.min.js"></script>
+<!-- waves js -->
+<script src="../../assets/dist/js/waves.min.js"></script>
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="../../assets/dist/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="../../assets/dist/js/common-pages.js"></script>
     </section>
+</body>
