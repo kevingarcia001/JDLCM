@@ -5,6 +5,7 @@ include_once "conexiondb.php";
 
 class mdlSexo{
 
+    // mostrar 
     static public function mdlMostrarSexo($tabla, $item, $valor){
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
         $stmt->bindParam(":".$item, $valor, PDO::PARAM_STMT);

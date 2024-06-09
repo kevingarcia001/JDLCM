@@ -145,7 +145,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                         foreach ($sexos as $sexo)
                          {
                         ?>
-                            <option value="<?php echo $sexo["idSexo"] ?>"><?php echo $sexo["Sexo"] ?></option>
+                            <option value="<?php echo $sexo["idSexo"]?>"><?php echo $sexo["Sexo"] ?></option>
                         <?php
                         }
                         ?>

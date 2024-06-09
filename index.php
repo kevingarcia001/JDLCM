@@ -24,6 +24,18 @@ include_once './models/roles.model.php';
 // sexo
 include_once './controllers/sexo.controllers.php';
 include_once './models/sexo.model.php';
+// grado
+include_once './controllers/grado.controllers.php';
+include_once './models/grado.model.php';
+// grado seccion
+include_once './controllers/grados_seccion.controlles.php';
+include_once './models/grados_seccion.models.php';
+// grado seccion
+include_once './controllers/secciones.controllers.php';
+include_once './models/seccion.model.php';
+// grado parentesco
+include_once './controllers/parentesco.controllers.php';
+include_once './models/parentesco.model.php';
 
 
 $plantilla = new controllerDashboard();

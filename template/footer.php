@@ -15,6 +15,7 @@
 <!-- ajax -->
 <script src="./views/js/usuarios.js"></script>
 <script src="./views/js/alumno.js"></script>
+<script src="./views/js/filtros.js"></script>
 
 <!-- Data tables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>

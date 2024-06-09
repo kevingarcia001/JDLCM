@@ -34,7 +34,7 @@
             <a href="index.php?pagina=usuarios" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Usuarios
+                Alumno
               </p>
             </a>
           </li>
@@ -42,7 +42,15 @@
             <a href="index.php?pagina=alumnos" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-               Alumnos
+              Tutor
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.php?pagina=alumnos" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+              Notas
               </p>
             </a>
           </li>
@@ -54,14 +62,6 @@
               </p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="roles" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Roles
-              </p>
-            </a>
-          </li> -->
           <li class="nav-item">
             <a href="index.php?pagina=salir" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>

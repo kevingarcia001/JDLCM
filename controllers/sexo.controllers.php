@@ -3,7 +3,7 @@
 class ctrSexo{
     static public function ctrMostrarSexo($item, $valor){
         $tabla="sexo";
-        $respuesta = mdlTurno::mdlMostrarTurno($tabla, $item, $valor);
+        $respuesta = mdlSexo::mdlMostrarSexo($tabla, $item, $valor);
         return $respuesta;
     }
 

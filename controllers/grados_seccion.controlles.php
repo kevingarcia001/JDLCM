@@ -1,11 +1,19 @@
 <?php
 
-class ctrSeccion{
-    static public function ctrMostrarSecciones($item, $valor){
-        $tabla="turno";
-        $respuesta = mdlSeccion::mdlMostrarSeccion($tabla, $item, $valor);
+class ctrGradosSecciones{
+    
+    static public function ctrMostrarGSecciones($item, $valor){
+        $tabla="gradoseccion";
+        $respuesta = mdlGradoSeccion::mdlMostrarGradoSeccion($tabla, $item, $valor);
         return $respuesta;
     }
+
+    static public function ctrComboGseccion(){
+        $tabla="gradoseccion";
+        $respuesta = mdlGradoSeccion::mdlComboGradoseccion($tabla);
+        return $respuesta;
+    }
+
 
 
 }

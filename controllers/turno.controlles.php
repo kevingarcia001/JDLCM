@@ -7,5 +7,11 @@ class ctrTurno{
         return $respuesta;
     }
 
+    static public function ctrComboTurno(){
+        $tabla="turno";
+        $respuesta = mdlTurno::mdlComboTurno($tabla);
+        return $respuesta;
+    }
+
 
 }
