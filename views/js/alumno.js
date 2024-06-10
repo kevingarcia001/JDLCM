@@ -29,41 +29,43 @@ $(document).ready(function() {
     });
 });
 
-// elminar
 $(document).ready(function() {
-    $(".tablaAlumno").on("click", ".btnEliminarAlumno", function() {
+    $(document).on("click", ".btnEliminarAlumno", function() {
         var idAlumno = $(this).attr("idAlumnoE");
 
         Swal.fire({
-            title: '¿Está seguro de eliminar este usuario?',
+            title: '¿Está seguro de eliminar este Alumno?',
             text: "¡Si no lo está puede cancelar la acción!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Sí, eliminar usuario'
+            confirmButtonText: 'Sí, eliminar alumno'
         }).then((result) => {
             if (result.isConfirmed) {
                 var datos = new FormData();
                 datos.append("idAlumnoE", idAlumno);
                 $.ajax({
-                    url: "./ajax/usuarios.ajax.php",
+                    url: "ajax/alumno.ajax.php",
                     method: "POST",
                     data: datos,
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function(respuesta) {
+                        console.log(respuesta);
                         if (respuesta == "ok") {
                             Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "El usuario ha sido eliminado",
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then(function() {
-                                window.location = "usuarios";
+                                type: "success",
+                                title: "¡CORRECTO!",
+                                text: "El alumno ha sido borrado correctamente",
+                                showConfirmButton: true,
+                                confirmButtonText: "Cerrar"
+                            }).then(function(result) {
+                                if (result.value) {
+                                    window.location = "alumnos";
+                                }
                             });
                         }
                     }
@@ -71,6 +73,7 @@ $(document).ready(function() {
             }
         });
     });
+    // EliminarAlumnoConDependenciasÇ
 });
 
 

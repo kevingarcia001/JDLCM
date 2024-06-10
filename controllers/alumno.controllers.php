@@ -130,6 +130,12 @@ class ctrAlumno{
         $respuesta=mdlAlumnos::mdlEliminarAlumno($tabla, $id);
         return $respuesta;
     }
+
+
+
+    public static function ctrMostrarAlumnoPorId($id) {
+        return mdlAlumnos::mdlMostrarAlumnoPorId($id);
+    }
     
     
 }

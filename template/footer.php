@@ -16,6 +16,7 @@
 <script src="./views/js/usuarios.js"></script>
 <script src="./views/js/alumno.js"></script>
 <script src="./views/js/filtros.js"></script>
+<script src="./views/js/perfil.alumno.js"></script>
 
 <!-- Data tables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>

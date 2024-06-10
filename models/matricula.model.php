@@ -27,4 +27,40 @@ class mdlMatricula{
         // Obtener los resultados de la consulta
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    static public function mdlCrearMatricula($tablaMatricula, $datosMatricula, 
+    $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor) {
+        try {
+            $conexion = Conexion::conectar();
+            // Iniciar transacción
+            $conexion->beginTransaction();
+
+            // Insertar en la tabla tutor
+            $stmt = $conexion->prepare("INSERT INTO $tablaTutor (PNombre, SNombre, PApellido, SApellido, Direccion, Cedula, Telefono, Sexo_idSexo, Parentesco_idParentesco) VALUES (:PNombre, :SNombre, :PApellido, :SApellido, :Direccion, :Cedula, :Telefono, :Sexo_idSexo, :Parentesco_idParentesco)");
+            $stmt->execute($datosTutor);
+            $tutor_id = $conexion->lastInsertId(); // Obtener el ID del tutor recién insertado
+
+            // Insertar en la tabla alumnos
+            $datosAlumno['Tutor_idTutor'] = $tutor_id; // Añadir el ID del tutor a los datos del alumno
+            $stmt = $conexion->prepare("INSERT INTO $tablaAlumno (PNombre, SNombre, PApellido, SApellido, Direccion, Fecha_Nacimiento, Telefono, Sexo_idSexo, Tutor_idTutor) VALUES (:PNombre, :SNombre, :PApellido, :SApellido, :Direccion, :Fecha_Nacimiento, :Telefono, :Sexo_idSexo, :Tutor_idTutor)");
+            $stmt->execute($datosAlumno);
+            $alumno_id = $conexion->lastInsertId(); // Obtener el ID del alumno recién insertado
+
+            // Insertar en la tabla matricula
+            $datosMatricula['Alumnos_idAlumno'] = $alumno_id; // Añadir el ID del alumno a los datos de la matrícula
+            $stmt = $conexion->prepare("INSERT INTO $tablaMatricula (CodMatricula, Anio_Academico_idAnio_Academico, GradoSeccion_idGradoSeccion, Turno_idTurno, Alumnos_idAlumno, Fecha) VALUES (:CodMatricula, :Anio_Academico_idAnio_Academico, :GradoSeccion_idGradoSeccion, :Turno_idTurno, :Alumnos_idAlumno, :Fecha)");
+            $stmt->execute($datosMatricula);
+
+            // Confirmar transacción
+            $conexion->commit();
+            return "ok";
+        } catch(PDOException $e) {
+            // Revertir transacción en caso de error
+            $conexion->rollBack();
+            return "error: " . $e->getMessage();
+        } finally {
+            $stmt = null;
+            $conexion = null;
+        }
+    }
 }

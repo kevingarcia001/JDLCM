@@ -22,7 +22,7 @@ class mdlAlumnos{
         return $stmt->fetch();
     }
 
-    // Crear
+    // CrearAlumno
     static public function mdlCrearAlumno($tabla, $datos){
         try {
             $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (PNombre, SNombre, PApellido, SApellido, Direccion, Telefono, Fecha_Nacimiento, Sexo_idSexo, Tutor_idTutor) VALUES (:PNombre, :SNombre, :PApellido, :SApellido, :Direccion, :Telefono, :Fecha_Nacimiento, :Sexo_idSexo, :Tutor_idTutor)");
@@ -55,8 +55,7 @@ class mdlAlumnos{
         try {
             $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET PNombre=:PNombre, SNombre=:SNombre, PApellido=:PApellido, SApellido=:SApellido, Direccion=:Direccion, Telefono=:Telefono, Fecha_Nacimiento=:Fecha_Nacimiento, Sexo_idSexo=:Sexo_idSexo, Tutor_idTutor=:Tutor_idTutor WHERE idAlumno=:idAlumno");
 
-            $stmt->bindParam(":idAlumn
-            o", $datos["idAlumno"], PDO::PARAM_INT);
+            $stmt->bindParam(":idAlumno", $datos["idAlumno"], PDO::PARAM_INT);
             $stmt->bindParam(":PNombre", $datos["PNombre"], PDO::PARAM_STR);
             $stmt->bindParam(":SNombre", $datos["SNombre"], PDO::PARAM_STR);
             $stmt->bindParam(":PApellido", $datos["PApellido"], PDO::PARAM_STR);
@@ -96,6 +95,33 @@ class mdlAlumnos{
             $stmt = null;
         }
     }
+
+
+    public static function mdlMostrarAlumnoPorId($id) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos WHERE idAlumno = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    public static function guardarAlumno($data) {
+        // Inserta en la tabla alumno y devuelve el ID generado
+        // Ejemplo:
+        $stmt = Conexion::conectar()->prepare("INSERT INTO alumno (pnombre, snombre, papellido, sapellido, fecha, direccion, telefono, sexo) VALUES (:pnombre, :snombre, :papellido, :sapellido, :fecha, :direccion, :telefono, :sexo)");
+        $stmt->bindParam(":pnombre", $data['pnombre'], PDO::PARAM_STR);
+        $stmt->bindParam(":snombre", $data['snombre'], PDO::PARAM_STR);
+        $stmt->bindParam(":papellido", $data['papellido'], PDO::PARAM_STR);
+        $stmt->bindParam(":sapellido", $data['sapellido'], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha", $data['fecha'], PDO::PARAM_STR);
+        $stmt->bindParam(":direccion", $data['direccion'], PDO::PARAM_STR);
+        $stmt->bindParam(":telefono", $data['telefono'], PDO::PARAM_STR);
+        $stmt->bindParam(":sexo", $data['sexo'], PDO::PARAM_STR);
+        $stmt->execute();
+        return Conexion::conectar()->lastInsertId();
+    }
+
+
+
     
     
 }

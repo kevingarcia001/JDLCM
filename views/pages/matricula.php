@@ -62,7 +62,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                     <th>Id</th>
                     <th>Alumno</th>
                     <th>Seccion </th>
-                    <th>Anio Academico</th>
+                    <th>Año Academico</th>
                     <th>Turno</th>
                     <th>Fechas</th>
                     <th>Acciones</th>
@@ -88,7 +88,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   ?>
                     <tr>
                       <td> <?php echo ($key + 1)  ?></td>
-                      <td><?php echo ($alumno["PNombre"])  ?> </td>
+                      <td><?php echo ($alumno["PNombre"]. " " .$alumno["PApellido"]. " " .$alumno["SApellido"])  ?> </td>
                       <td><?php echo ($value["GradoSeccion_idGradoSeccion"])  ?> </td>
                       <td> <?php echo ($anioAc["Anio_Academico"])  ?> </td>
                       <td><?php echo ($turno["Turno"])  ?> </td>
@@ -96,9 +96,9 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <a href="index.php?pagina=info" type="button" class="btn btn-secondary btn-sm ">
-                            <i class="fa fa-eye "></i>
-                          </a>
+                          <button class="btn btn-secondary btn-sm btn-ver-perfil" data-profile="alumno">
+                            <i class="fa fa-eye"></i> 
+                          </button>
                           <button type="button" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
                             <i class="fas fa-pencil-alt text-white"></i>
                           </button>
@@ -107,6 +107,14 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                             <i class="fas fa-trash-alt text-white"></i>
                           </button>
                         </div>
+                        <!-- <div class="btn-group">
+                          <button class="btn btn-secondary btn-sm btn-ver-perfil" data-profile="alumno">
+                            <i class="fa fa-eye"></i> 
+                          </button>
+                          <button type="button" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
+                            <i class="fas fa-pencil-alt text-white"></i>
+                          </button>
+                        </div> -->
                       </td>
                     </tr>
                   <?php
@@ -147,10 +155,10 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
           </li>
         </ul>
         <!-- Contenido de las pestañas -->
-        <div class="tab-content" id="myTabContent">
-          <!-- Pestaña 1 -->
-          <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-            <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
+          <div class="tab-content" id="myTabContent">
+            <!-- Pestaña 1 -->
+            <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
@@ -158,7 +166,6 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <label for="pnombre">Primer Nombre</label>
                       <input type="text" name="pnombre" class="form-control" id="pnombre" placeholder="Primer Nombre">
                     </div>
-
                     <div class="form-group">
                       <label for="papellido">Primer Apellido</label>
                       <input type="text" name="papellido" class="form-control" id="papellido" placeholder="Primer Apellido">
@@ -167,7 +174,6 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <label for="fecha">Fecha Nacimiento</label>
                       <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Fecha Nacimiento">
                     </div>
-
                     <div class="form-group">
                       <label for="direccion">Dirección</label>
                       <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección">
@@ -186,21 +192,6 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <label for="telefono">Teléfono</label>
                       <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono">
                     </div>
-
-                    <!-- <div class="form-group">
-                      <label for="tutor">Tutor</label>
-                      <select class="form-control" name="tutor" id="tutor">
-                        <option value="">seleccione</option>
-                        <?php
-                        $tutores = ctrTutor::ctrComboTutor();
-                        foreach ($tutores as $tutor) {
-                        ?>
-                          <option value="<?php echo $tutor["idTutor"] ?>"><?php echo $tutor["PNombre"] ?></option>
-                        <?php
-                        }
-                        ?>
-                      </select>
-                    </div> -->
                     <div class="form-group">
                       <label for="sexo">Sexo</label>
                       <select class="form-control" name="sexo" id="sexo">
@@ -218,58 +209,49 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   </div>
                 </div>
               </div>
-              <!-- <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div> -->
-            </form>
-          </div>
-          <!-- Pestaña 2 -->
-          <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-            <form action="" method="post" enctype="multipart/form-data">
+            </div>
+            <!-- Pestaña 2 -->
+            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="pnombre">Primer Nombre</label>
-                      <input type="text" name="pnombre" class="form-control" id="pnombre" placeholder="Primer Nombre">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="papellido">Primer Apellido</label>
-                      <input type="text" name="papellido" class="form-control" id="papellido" placeholder="Primer Apellido">
+                      <label for="t_pnombre">Primer Nombre</label>
+                      <input type="text" name="t_pnombre" class="form-control" id="t_pnombre" placeholder="Primer Nombre">
                     </div>
                     <div class="form-group">
-                      <label for="fecha">Fecha Nacimiento</label>
-                      <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Fecha Nacimiento">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="direccion">Cedula</label>
-                      <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección">
+                      <label for="t_papellido">Primer Apellido</label>
+                      <input type="text" name="t_papellido" class="form-control" id="t_papellido" placeholder="Primer Apellido">
                     </div>
                     <div class="form-group">
-                      <label for="direccion">Dirección</label>
-                      <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Dirección">
+                      <label for="t_fecha">Fecha Nacimiento</label>
+                      <input type="date" name="t_fecha" class="form-control" id="t_fecha" placeholder="Fecha Nacimiento">
+                    </div>
+                    <div class="form-group">
+                      <label for="t_cedula">Cedula</label>
+                      <input type="text" name="t_cedula" class="form-control" id="t_cedula" placeholder="Cedula">
+                    </div>
+                    <div class="form-group">
+                      <label for="t_direccion">Dirección</label>
+                      <input type="text" name="t_direccion" class="form-control" id="t_direccion" placeholder="Dirección">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="snombre">Segundo Nombre</label>
-                      <input type="text" name="snombre" class="form-control" id="snombre" placeholder="Segundo Nombre">
+                      <label for="t_snombre">Segundo Nombre</label>
+                      <input type="text" name="t_snombre" class="form-control" id="t_snombre" placeholder="Segundo Nombre">
                     </div>
                     <div class="form-group">
-                      <label for="sapellido">Segundo Apellido</label>
-                      <input type="text" name="sapellido" class="form-control" id="sapellido" placeholder="Segundo Apellido">
+                      <label for="t_sapellido">Segundo Apellido</label>
+                      <input type="text" name="t_sapellido" class="form-control" id="t_sapellido" placeholder="Segundo Apellido">
                     </div>
                     <div class="form-group">
-                      <label for="telefono">Teléfono</label>
-                      <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono">
+                      <label for="t_telefono">Teléfono</label>
+                      <input type="text" name="t_telefono" class="form-control" id="t_telefono" placeholder="Teléfono">
                     </div>
-
                     <div class="form-group">
-                      <label for="tutor">Parentesco</label>
-                      <select class="form-control" name="tutor" id="tutor">
+                      <label for="t_parentesco">Parentesco</label>
+                      <select class="form-control" name="t_parentesco" id="t_parentesco">
                         <option value="">seleccione</option>
                         <?php
                         $parentesco = ctrPerentesco::ctrComboParentesco();
@@ -282,8 +264,8 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="sexo">Sexo</label>
-                      <select class="form-control" name="sexo" id="sexo">
+                      <label for="t_sexo">Sexo</label>
+                      <select class="form-control" name="t_sexo" id="t_sexo">
                         <option value="">seleccione</option>
                         <?php
                         $sexos = ctrSexo::ctrComboSexo();
@@ -298,26 +280,29 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   </div>
                 </div>
               </div>
-              <!-- <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div> -->
-            </form>
-          </div>
-          <!-- Pestaña 3 -->
-          <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-            <form action="" method="post" enctype="multipart/form-data">
+            </div>
+            <!-- Pestaña 3 -->
+            <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
               <div class="card-body">
                 <div class="row">
-                  <!-- Columna izquierda -->
                   <div class="col-md-6">
-                  <div class="form-group">
-                      <label for="snombre">Año Academco</label>
-                      <input type="text" name="snombre" class="form-control" id="snombre" placeholder="Segundo Nombre">
+                    <div class="form-group">
+                      <label for="seccion">Año Academico</label>
+                      <select class="form-control" name="seccion" id="seccion">
+                        <option value="">seleccione</option>
+                        <?php
+                        $anioAcademico = ctrAnioAcademico::ctrComboAnioAcademico();
+                        foreach ($anioAcademico as $anioac) {
+                        ?>
+                          <option value="<?php echo $anioac["idAnio_Academico"] ?>"><?php echo $anioac["Anio_Academico"] ?></option>
+                        <?php
+                        }
+                        ?>
+                      </select>
                     </div>
                     <div class="form-group">
-                      <label for="sexo">Seccion</label>
-                      <select class="form-control" name="sexo" id="sexo">
+                      <label for="seccion">Sección</label>
+                      <select class="form-control" name="seccion" id="seccion">
                         <option value="">seleccione</option>
                         <?php
                         $secciones = ctrSeccion::ctrComboSecciones();
@@ -330,11 +315,9 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       </select>
                     </div>
                   </div>
-
-                  <!-- Columna derecha -->
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="tutor">Turno</label>
+                      <label for="turno">Turno</label>
                       <select class="form-control" name="turno" id="turno">
                         <option value="">seleccione</option>
                         <?php
@@ -348,8 +331,8 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="sexo">Grado</label>
-                      <select class="form-control" name="sexo" id="sexo">
+                      <label for="grado">Grado</label>
+                      <select class="form-control" name="grado" id="grado">
                         <option value="">seleccione</option>
                         <?php
                         $grados = ctrGrado::ctrComboGrados();
@@ -364,17 +347,16 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   </div>
                 </div>
               </div>
-              <!-- <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </div> -->
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+          <?php
+            ctrMatricula::ctrCrearMatricula();
+          ?>
+        </form>
       </div>
     </div>
   </div>
