@@ -17,6 +17,7 @@
 <script src="./views/js/alumno.js"></script>
 <script src="./views/js/filtros.js"></script>
 <script src="./views/js/perfil.alumno.js"></script>
+<script src="./views/js/matricula.js"></script>
 
 <!-- Data tables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -32,15 +33,13 @@
 <script src="./assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="./assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-
-<!-- <script src="./assets/dist/js/adminlte.min.js?v=3.2.0"></script> -->
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false, "pageLength": 5,
       "language": {url: '../assets/dist/js/es-mx.json'},
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:e  q(0)');
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:e q(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,

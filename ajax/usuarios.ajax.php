@@ -12,11 +12,11 @@ class AjaxUsuario {
         echo json_encode($respuesta);
     }
     
-    // public $idEliminar;
-    // static public function AjaxEliminarAlumno(){
-    //     $respuesta = ctrAlumno::ctrEliminarAlumno($this->idEliminar);
-    //     echo $respuesta;
-    // }
+    public $idEliminar;
+    public function AjaxEliminarUsuario(){
+        $respuesta = ctrUsuarios::ctrEliminarUsuario($this->idEliminar);
+        echo $respuesta;
+    }
 }
 
 if (isset($_POST["idUsuario"])) {
@@ -25,9 +25,9 @@ if (isset($_POST["idUsuario"])) {
     $editar->ajaxEditarUsuario();
 }
 
-// if (isset($_POST["idAlumnoE"])) {
-//     $elminar = new AjaxAlumno();
-//     $elminar->idEliminar = $_POST["idAlumnoE"];
-//     $elminar->AjaxEliminarAlumno();
-// }
+if (isset($_POST["idUsuarioE"])) {
+    $elminar = new AjaxUsuario();
+    $elminar->idEliminar = $_POST["idUsuarioE"];
+    $elminar->AjaxEliminarUsuario();
+}
 ?>

@@ -24,10 +24,10 @@ $(document).ready(function() {
     });
 });
 
-// elminar
+// elminar usuarios
 $(document).ready(function() {
-    $(".tablaAlumno").on("click", ".btnEliminarAlumno", function() {
-        var idAlumno = $(this).attr("idAlumnoE");
+    $(document).on("click", ".btnEliminarUsuario", function() {
+        var idUsuario = $(this).attr("idUsuarioE");
 
         Swal.fire({
             title: '¿Está seguro de eliminar este usuario?',
@@ -41,7 +41,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 var datos = new FormData();
-                datos.append("idAlumnoE", idAlumno);
+                datos.append("idUsuarioE", idUsuario);
                 $.ajax({
                     url: "./ajax/usuarios.ajax.php",
                     method: "POST",

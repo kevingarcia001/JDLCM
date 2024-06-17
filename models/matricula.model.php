@@ -2,15 +2,17 @@
 
 require_once "conexiondb.php";
 
-class mdlMatricula{
+class mdlMatricula
+{
 
     // listar matricula
-    static public function mdlMostrarMatricula($tabla){
-        $stmt= Conexion::conectar()->prepare("SELECT * FROM $tabla");
+    static public function mdlMostrarMatricula($tabla)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();
-        $stmt=null;
+        $stmt = null;
     }
 
     // Mfiltro
@@ -28,8 +30,29 @@ class mdlMatricula{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    static public function mdlCrearMatricula($tablaMatricula, $datosMatricula, 
-    $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor) {
+
+
+    static public function mdlVerMatricula($idMatricula)
+    {
+        try {
+            $conexion = Conexion::conectar();
+            $stmt = $conexion->prepare("SELECT * FROM matricula 
+                                        JOIN alumnos ON matricula.Alumnos_idAlumno = alumnos.idAlumno 
+                                        JOIN tutor ON alumnos.Tutor_idTutor = tutor.idTutor
+                                        WHERE matricula.idMatricula = :idMatricula");
+            $stmt->bindParam(":idMatricula", $idMatricula, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "error: " . $e->getMessage();
+        } finally {
+            $stmt = null;
+            $conexion = null;
+        }
+    }
+
+    static public function mdlCrearMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor)
+    {
         try {
             $conexion = Conexion::conectar();
             // Iniciar transacción
@@ -54,13 +77,31 @@ class mdlMatricula{
             // Confirmar transacción
             $conexion->commit();
             return "ok";
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             // Revertir transacción en caso de error
             $conexion->rollBack();
             return "error: " . $e->getMessage();
         } finally {
             $stmt = null;
             $conexion = null;
+        }
+    }
+
+
+    // eliminar
+    static public function mdlEliminarMatricula($tabla, $id) {
+        try {
+            $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idMatricula = :idMatricula");
+            $stmt->bindParam(":idMatricula", $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return "ok";
+            } else {
+                return "error";
+            }
+        } catch (PDOException $e) {
+            return "error: " . $e->getMessage();
+        } finally {
+            $stmt = null;
         }
     }
 }

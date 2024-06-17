@@ -11,9 +11,16 @@ class ctrMatricula
         return $respuesta;
     }
 
+   
+    static public function ctrVerMatricula($idMatricula) {    
+     return mdlMatricula::mdlVerMatricula($idMatricula);
+    }
+   
+    
+
     static public function ctrCrearMatricula()
     {
-        if (isset($_POST["pnombre"])) {
+        if (isset($_POST["pnombre"]) && !empty($_POST["pnombre"])) {
             // Datos del alumno
             $datosAlumno = array(
                 "PNombre" => $_POST["pnombre"],
@@ -25,7 +32,7 @@ class ctrMatricula
                 "Telefono" => $_POST["telefono"],
                 "Sexo_idSexo" => $_POST["sexo"]
             );
-
+    
             // Datos del tutor
             $datosTutor = array(
                 "PNombre" => $_POST["t_pnombre"],
@@ -38,23 +45,23 @@ class ctrMatricula
                 "Sexo_idSexo" => $_POST["t_sexo"],
                 "Parentesco_idParentesco" => $_POST["t_parentesco"]
             );
-
+    
             // Datos de la matrícula
             $datosMatricula = array(
                 "CodMatricula" => null, // Suponiendo que CodMatricula es autogenerado o no es necesario
-                "Anio_Academico_idAnio_Academico" => $_POST["año_academico"],
+                "Anio_Academico_idAnio_Academico" => $_POST["anio_acdemico"],
                 "GradoSeccion_idGradoSeccion" => $_POST["grado"],
                 "Turno_idTurno" => $_POST["turno"],
                 "Alumnos_idAlumno" => null, // Se asignará en el modelo después de insertar el alumno
                 "Fecha" => date('Y-m-d') // O la fecha que necesites
             );
-
+    
             $tablaMatricula = "matricula";
             $tablaAlumno = "alumnos";
             $tablaTutor = "tutor";
-
+    
             $respuesta = mdlMatricula::mdlCrearMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor);
-
+    
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
@@ -78,5 +85,12 @@ class ctrMatricula
                     </script>';
             }
         }
+    }
+
+
+    static public function ctrEliminarMatricula($id) {
+        $tabla = "matricula";
+        $respuesta = mdlMatricula::mdlEliminarMatricula($tabla, $id);
+        return $respuesta;
     }
 }

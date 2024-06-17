@@ -37,10 +37,12 @@ class mdlUsuarios{
     static public function mdlGuardarUsuarios($tabla, $datos){
         try{
             $stmt= Conexion::conectar()->prepare("INSERT INTO $tabla( Usuario, Nombre, Contrasena, Rol_idRol) VALUES (:Usuario, :Nombre, :Contrasena, :Rol_idRol) ");
+            
+            $contra_encriptada = password_hash($datos['Contrasena'], PASSWORD_DEFAULT);
 
             $stmt->bindParam(":Usuario", $datos["Usuario"], PDO::PARAM_STR);
             $stmt->bindParam(":Nombre", $datos["Nombre"], PDO::PARAM_STR);
-            $stmt->bindParam(":Contrasena", $datos["Contrasena"], PDO::PARAM_STR);
+            $stmt->bindParam(":Contrasena", $contra_encriptada, PDO::PARAM_STR);
             $stmt->bindParam(":Rol_idRol", $datos["Rol_idRol"], PDO::PARAM_INT);
     
             if($stmt->execute()){
@@ -48,7 +50,6 @@ class mdlUsuarios{
             }else{
                 return "error";
             }
-    
            
         } catch(PDOException $e){
             return "error: " .$e->getMessage();
@@ -63,7 +64,6 @@ class mdlUsuarios{
     static public function mdlEditarUsuario($tabla, $datos){
         try{
             $stmt= Conexion::conectar()->prepare("UPDATE $tabla SET Usuario=:Usuario, Nombre=:Nombre, Contrasena=:Contrasena, Rol_idRol=:Rol_idRol WHERE idUsuario=:idUsuario");
-
             $stmt->bindParam(":idUsuario", $datos["idUsuario"], PDO::PARAM_INT);
             $stmt->bindParam(":Usuario", $datos["Usuario"], PDO::PARAM_STR);
             $stmt->bindParam(":Nombre", $datos["Nombre"], PDO::PARAM_STR);
@@ -75,8 +75,6 @@ class mdlUsuarios{
             }else{
                 return "error";
             }
-    
-           
         } catch(PDOException $e){
             return "error: " .$e->getMessage();
         } finally{
@@ -85,6 +83,23 @@ class mdlUsuarios{
         }
 
 
+    }
+
+    // Eliminar
+    static public function mdlEliminarUsuario($tabla, $id) {
+        try {
+            $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idUsuario =:idUsuario");
+            $stmt->bindParam(":idUsuario", $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return "ok";
+            } else {
+                return "error";
+            }
+        } catch (PDOException $e) {
+            return "error: " . $e->getMessage();
+        } finally {
+            $stmt = null;
+        }
     }
 
 

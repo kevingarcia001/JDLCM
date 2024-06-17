@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./assets/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/dist/css/stylelogin.css">
+  <!-- <link rel="stylesheet" href="./assets/dist/css/stylelogin.css"> -->
 
   <!-- datatable -->
   <link rel="stylesheet" href="./assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -22,6 +22,5 @@
   <link rel="stylesheet" href="./assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+
   

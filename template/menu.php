@@ -1,76 +1,110 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link text-center">
-        <span class="brand-text font-weight-light">JDLCM</span>
-    </a>
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Incluir el controlador de permisos
+include_once './controllers/permisos.controllers.php';
+
+// Obtener el rol y los permisos del usuario
+if (isset($_SESSION['rol'])) {
+    $rol = $_SESSION['rol'];
+    $permisos = PermisoController::obtenerPermisosPorRol($rol);
+} else {
+    // Si no hay sesión iniciada, mostrar un menú vacío o redirigir a iniciar sesión
+    $permisos = array();
+}
+?>
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#14173D">
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar d-flex flex-column">
         <!-- Sidebar user (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="info text-center text-white">
-                <h2><?php echo isset($_SESSION["Nickname"]) ? $_SESSION["Nickname"] : "Usuario"; ?></h2>
+        <div class="user-panel mt-3 pb-3 mb-3 text-center">
+            <div class="image">
+                <img src="../assets/dist/img/icono.png" style="width: 180px; height: 200px;" alt="User Image">
+            </div>
+            <div class="user-info text-white">
+                <p class="brand-text text-sm text-uppercase fw-bold">sistema de matrícula jdlcm</p>
             </div>
         </div>
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-2 flex-grow-1">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a href="index.php?pagina=usuarios" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Usuarios</p>
+                <?php if (in_array('usuarios', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=usuarios" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Usuarios</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('roles', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=roles" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Roles</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('matricula', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=matricula" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Matrículas</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('alumnos', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=alumnos" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Alumnos</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('infoAlumno', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=infoAlumno" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Información Alumno</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('infotTutor', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=infotTutor" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>Información Tutor</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('hojamatricula', $permisos)) : ?>
+                    <!-- <li class="nav-item">
+                    <a href="index.php?pagina=hojamatricula" class="nav-link">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>Hoja de Matrícula</p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=asignaturas" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Asignaturas</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=matricula" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Matriculas</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=alumnos" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Alumnos</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=infoAlumno" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Iformacion Alumno</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=infotTutor" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>Iformacion Tutor</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=infotutor" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Notas</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?pagina=infotutor" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
-                        <p>Registro Matricula</p>
-                    </a>
-                </li>
-                <!-- Aquí se cargará dinámicamente el menú secundario -->
-                </ul>
-                <ul>
-                    <li>
-                        
-                        <div id="secondary-menu"></div> 
+                </li> -->
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <?php if (in_array('salir', $permisos)) : ?>
+            <nav class="mt-auto">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="index.php?pagina=salir" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>Salir</p>
+                        </a>
                     </li>
                 </ul>
-        </nav>
+            </nav>
+        <?php endif; ?>
     </div>
 </aside>

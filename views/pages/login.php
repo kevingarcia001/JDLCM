@@ -54,7 +54,7 @@
 
                         <?php
                         $iniciarSecion = new ctrUsuarios();
-                        $iniciarSecion->ctrIniciarSecion();
+                        $iniciarSecion->ctrIniciarSesion();
                         ?>
                     </form>
                 </div>

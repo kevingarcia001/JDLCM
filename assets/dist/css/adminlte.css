@@ -46,6 +46,9 @@
 *::after {
   box-sizing: border-box;
 }
+.no-border {
+  border: none !important;
+}
 
 h1{
   background-image: url(../../../ajax/usuarios.ajax.php);

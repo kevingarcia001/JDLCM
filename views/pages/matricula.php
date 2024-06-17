@@ -25,7 +25,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
 
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped tablaMatricula">
+              <table id="example1" class="table table-bordered table-striped tablaMatricula rounded-4">
                 <thead>
                   <div class="container mt-3">
                     <div class="row align-items-center">
@@ -52,13 +52,13 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                         </div>
                       </div>
                       <div class="col-md-6 text-right">
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-lg">
-                          AGREGAR ALUMNOS
+                        <button type="button" class="btn btn-primary btn-lg rounded " data-toggle="modal" data-target="#modal-lg">
+                          <span class="fw-bold text-uppercase ">Agregar Alumno</span>
                         </button>
                       </div>
                     </div>
                   </div>
-                  <tr>
+                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                     <th>Id</th>
                     <th>Alumno</th>
                     <th>Seccion </th>
@@ -68,7 +68,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                     <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody id="resultado-matricula">
+                <tbody class="text-bold text-uppercase" id="resultado-matricula">
                   <?php   ?>
 
                   <?php
@@ -88,7 +88,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   ?>
                     <tr>
                       <td> <?php echo ($key + 1)  ?></td>
-                      <td><?php echo ($alumno["PNombre"]. " " .$alumno["PApellido"]. " " .$alumno["SApellido"])  ?> </td>
+                      <td><?php echo ($alumno["PNombre"] . " " . $alumno["PApellido"] . " " . $alumno["SApellido"])  ?> </td>
                       <td><?php echo ($value["GradoSeccion_idGradoSeccion"])  ?> </td>
                       <td> <?php echo ($anioAc["Anio_Academico"])  ?> </td>
                       <td><?php echo ($turno["Turno"])  ?> </td>
@@ -96,15 +96,18 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <button class="btn btn-secondary btn-sm btn-ver-perfil" data-profile="alumno">
-                            <i class="fa fa-eye"></i> 
+                          <button href="../pages/hojamatricula.php" class="btnPdfMatricula"  >
+                          <i class="fas fa-file-pdf text-lg text-danger"></i>
                           </button>
-                          <button type="button" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
-                            <i class="fas fa-pencil-alt text-white"></i>
+                          <button class="border-none btn-ver-perfil" data-profile="alumno" data-toggle="modal"  data-target="#modal-ver-matricula">
+                            <i class="fa fa-eye text-lg text-primary"></i>
+                          </button>
+                          <button type="button" class="btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
+                            <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </button>
 
-                          <button class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt text-white"></i>
+                          <button class="btnEliminarMatricula"  idMatriculaE="<?php echo ($value["idMatricula"])?>">
+                            <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
                           </button>
                         </div>
                         <!-- <div class="btn-group">
@@ -135,25 +138,26 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
 <div class="modal fade" id="modal-lg">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">AGREGAR NUEVA MATRICULA</h4>
+      <div class="modal-header" style="background-color:#14173D">
+        <h4 class="modal-title text-white fw-bold">AGREGAR NUEVA MATRICULA</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span class="text-white" aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <!-- Pestañas -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-pills nav-fill mt-3" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Datos Alumno</a>
+            <a class="nav-link active text-uppercase fw-bold" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Datos Alumno</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Datos Tutor</a>
+            <a class="nav-link text-uppercase fw-bold" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Datos Tutor</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Información Matricula</a>
+            <a class="nav-link text-uppercase fw-bold" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Información Matricula</a>
           </li>
         </ul>
+        
         <!-- Contenido de las pestañas -->
         <form action="" method="post" enctype="multipart/form-data">
           <div class="tab-content" id="myTabContent">
@@ -288,7 +292,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="seccion">Año Academico</label>
-                      <select class="form-control" name="seccion" id="seccion">
+                      <select class="form-control" name="anio_acdemico" id="anio_acdemico">
                         <option value="">seleccione</option>
                         <?php
                         $anioAcademico = ctrAnioAcademico::ctrComboAnioAcademico();
@@ -349,15 +353,92 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-          </div>
+          <div class="text-center mt-5">
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Guardar
+    </button>
+</div>
           <?php
-            ctrMatricula::ctrCrearMatricula();
+          ctrMatricula::ctrCrearMatricula();
           ?>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal para ver información de la matrícula -->
+<div class="modal fade" id="modal-ver-matricula" tabindex="-1" role="dialog" aria-labelledby="modal-ver-matriculaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="modal-ver-matriculaLabel">Información de la Matrícula</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="alumno-tab" data-toggle="tab" href="#alumno" role="tab" aria-controls="alumno" aria-selected="true">Datos del Alumno</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="tutor-tab" data-toggle="tab" href="#tutor" role="tab" aria-controls="tutor" aria-selected="false">Datos del Tutor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="matricula-tab" data-toggle="tab" href="#matricula" role="tab" aria-controls="matricula" aria-selected="false">Datos de la Matrícula</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="alumno" role="tabpanel" aria-labelledby="alumno-tab">
+          <div class="row">
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-user mr-1"></i> Alumno</strong>
+                        <p class="text-muted"><span id="ver-pnombre"></span></p>
+
+                        <strong><i class="fas fa-venus-mars mr-1"></i> Sexo</strong>
+                         <p class="text-muted"><span id="ver-sexo"></span></span></p>
+
+                        <strong><i class="fas fa-chalkboard-teacher mr-1"></i> Tutor</strong>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Dirección</strong>
+                        <p class="text-muted"><?php echo $alumno['Direccion']; ?></p>
+
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Fecha de Nacimiento</strong>
+                        <p class="text-muted"><?php echo $alumno['Fecha_Nacimiento']; ?></p>
+
+                        <strong><i class="fas fa-phone-alt mr-1"></i> Teléfono</strong>
+                        <p class="text-muted"><?php echo $alumno['Telefono']; ?></p>
+                    </div>
+                </div>
+          </div>
+          <div class="tab-pane fade" id="tutor" role="tabpanel" aria-labelledby="tutor-tab">
+            <p><strong>Primer Nombre:</strong> <span id="ver-t-pnombre"></span></p>
+            <p><strong>Segundo Nombre:</strong> <span id="ver-t-snombre"></span></p>
+            <p><strong>Primer Apellido:</strong> <span id="ver-t-papellido"></span></p>
+            <p><strong>Segundo Apellido:</strong> <span id="ver-t-sapellido"></span></p>
+            <p><strong>Cédula:</strong> <span id="ver-t-cedula"></span></p>
+            <p><strong>Dirección:</strong> <span id="ver-t-direccion"></span></p>
+            <p><strong>Teléfono:</strong> <span id="ver-t-telefono"></span></p>
+            <p><strong>Parentesco:</strong> <span id="ver-t-parentesco"></span></p>
+          </div>
+          <div class="tab-pane fade" id="matricula" role="tabpanel" aria-labelledby="matricula-tab">
+            <p><strong>Año Académico:</strong> <span id="ver-anio-academico"></span></p>
+            <p><strong>Grado:</strong> <span id="ver-grado"></span></p>
+            <p><strong>Sección:</strong> <span id="ver-seccion"></span></p>
+            <p><strong>Turno:</strong> <span id="ver-turno"></span></p>
+            <p><strong>Fecha:</strong> <span id="ver-fecha-matricula"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

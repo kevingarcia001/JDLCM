@@ -3,8 +3,7 @@
 class ctrUsuarios
 {
 
-    static public function ctrIniciarSecion()
-    {
+    static public function ctrIniciarSesion() {
         if (isset($_POST["log_user"]) && isset($_POST["log_pass"])) {
             $usuario = $_POST["log_user"];
             $contraseña = $_POST["log_pass"];
@@ -17,6 +16,7 @@ class ctrUsuarios
                 $_SESSION["validarSession"] = "ok";
                 $_SESSION["idBackend"] = $respuesta["idUsuario"];
                 $_SESSION["Nickname"] = $respuesta["Nombre"];
+                $_SESSION["rol"] = $respuesta["Rol_idRol"];
 
                 echo '<script> 
                          window.location = "index.php?pagina=usuarios";  
@@ -59,6 +59,8 @@ class ctrUsuarios
             $nombre = $_POST["nombre_usuario"];
             $password = $_POST["password_usuario"];
             $rol = $_POST["rol_usuario"];
+
+            // $encriptar_contraseña = password_hash($password, PASSWORD_DEFAULT);
             $datos = array(
                 "Usuario" => $nusuario,
                 "Nombre" => $nombre,
@@ -104,12 +106,21 @@ class ctrUsuarios
             $contrasena = $_POST["password_usurioE"];
             $rol = $_POST["rol_usuarioE"];
             
+            if (!empty($contrasena)) {
+                $contrasena_encriptada = password_hash($contrasena, PASSWORD_DEFAULT);
+            } else {
+                // Si no se proporcionó una nueva contraseña, mantener la existente
+                $usuarioExistente = mdlUsuarios::mdlIniciarSecion("usuario", "idUsuario", $idUsuario); // Obtener los datos actuales del usuario
+                $contrasena_encriptada = $usuarioExistente["Contrasena"];
+            }
+            // Clave de recuperación
+    
 
             $datos = array(
                 "idUsuario" => $idUsuario,
                 "Usuario" => $usuario,
                 "Nombre" => $nombre,
-                "Contasena"=> $contrasena,
+                "Contrasena"=> $contrasena_encriptada,
                 "Rol_idRol" => $rol,
                
             );
@@ -140,6 +151,13 @@ class ctrUsuarios
                       </script>';
             }
         }
+    }
+
+
+    static public function ctrEliminarUsuario($id){
+        $tabla="usuario";
+        $respuesta=mdlUsuarios::mdlEliminarUsuario($tabla, $id);
+        return $respuesta;
     }
 
 }

@@ -1,5 +1,11 @@
 <?php
+// session_start();
 session_destroy();
-header("Location: ./pages/login.php");
-exit;
+
+if(headers_sent()){
+    echo "<script>window.location.href='index.php?pagina=login.php' </script>";
+}else{
+    header("Location: index.php?pagina=login.php");
+}
+exit();
 ?>

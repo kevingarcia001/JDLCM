@@ -55,7 +55,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                         <button type="button" class="btn btn-primary btn-sm btneditarUsuario" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>">
                           <i class="fa fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"])  ?>" >
+                        <button type="button" class="btn btn-danger btn-sm btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"])?>" >
                           <i class="fa fa-trash"></i>
                         </button>
                       </td>

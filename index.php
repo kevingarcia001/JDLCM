@@ -36,7 +36,8 @@ include_once './models/seccion.model.php';
 // grado parentesco
 include_once './controllers/parentesco.controllers.php';
 include_once './models/parentesco.model.php';
-
+// permisos 
+include_once './controllers/permisos.controllers.php';
 
 $plantilla = new controllerDashboard();
 $plantilla->Dashboard();
