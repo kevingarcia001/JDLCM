@@ -27,36 +27,10 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped tablaMatricula rounded-4">
                 <thead>
-                  <div class="container mt-3">
-                    <div class="row align-items-center">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="grado">Filtra Matricula por seccion</label>
-                          <select class="form-control" name="grado" id="grado_seccion">
-                            <option value="">Seleccione</option>
-                            <?php
-                            $gradosSeccion = ctrGradosSecciones::ctrComboGseccion();
-                            foreach ($gradosSeccion as $grado) {
-
-                              // $item = "idGrado";
-                              // $valor = $value["Anio_Academico_idAnio_Academico"];
-                              // $nombregrado = ctrAnioAcademico::ctrMostrarAnioAcademico($item, $valor);
-                            ?>
-                              <option value="<?php echo $grado["idGradoSeccion"] ?>">
-                                <?php echo $grado["Grado_idGrado"] ?> <?php echo $grado["Seccion_idSeccion"] ?>
-                              </option>
-                            <?php
-                            }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-md-6 text-right">
-                        <button type="button" class="btn btn-primary btn-lg rounded " data-toggle="modal" data-target="#modal-lg">
-                          <span class="fw-bold text-uppercase ">Agregar Alumno</span>
-                        </button>
-                      </div>
-                    </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-primary btn-sm rounded " data-toggle="modal" data-target="#modal-lg"  style="background-color:#14173D"  >
+                      <span class="fw-bold text-uppercase ">Agregar Alumno</span>
+                    </button>
                   </div>
                   <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                     <th>Id</th>
@@ -96,17 +70,17 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <button href="../pages/hojamatricula.php" class="btnPdfMatricula"  >
+                          <a href="index.php?pagina=prueba.pdf.php" target="_blank" class="btnPdfMatricula"  style="border: none" >
                           <i class="fas fa-file-pdf text-lg text-danger"></i>
-                          </button>
-                          <button class="border-none btn-ver-perfil" data-profile="alumno" data-toggle="modal"  data-target="#modal-ver-matricula">
+                           </a>
+                          <button class="border-none btn-ver-perfil" data-profile="alumno" data-toggle="modal"  data-target="#modal-ver-matricula" style="border: none" >
                             <i class="fa fa-eye text-lg text-primary"></i>
                           </button>
-                          <button type="button" class="btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
+                          <button type="button" class="btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>"   style="border: none"  >
                             <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </button>
 
-                          <button class="btnEliminarMatricula"  idMatriculaE="<?php echo ($value["idMatricula"])?>">
+                          <button class="btnEliminarMatricula"  idMatriculaE="<?php echo ($value["idMatricula"])?>"  style="border: none" >
                             <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
                           </button>
                         </div>
@@ -133,7 +107,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
     </div>
   </section>
 </div>
-
+<iframe src="pruebapdf.php" frameborder="0"></iframe>
 
 <div class="modal fade" id="modal-lg">
   <div class="modal-dialog modal-lg">
@@ -148,7 +122,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
         <!-- Pestañas -->
         <ul class="nav nav-pills nav-fill mt-3" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active text-uppercase fw-bold" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Datos Alumno</a>
+            <a class="nav-link active text-uppercase fw-bold" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"   style="background-color:#14173D"  >Datos Alumno</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-uppercase fw-bold" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Datos Tutor</a>

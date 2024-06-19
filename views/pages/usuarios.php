@@ -31,14 +31,14 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                   <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-usuarios">
                     AGREGAR USARIO
                   </button>
-                  <tr>
+                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D" >
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Rol</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody  class="text-bold text-uppercase" >
                   <?php   ?>
                   <?php
                   foreach ($usuarios as $key => $value) {
@@ -52,11 +52,11 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                       <td><?php echo ($value["Nombre"])  ?> </td>
                       <td> <?php echo ($rol["Rol"])  ?> </td>
                       <td class="text-center">
-                        <button type="button" class="btn btn-primary btn-sm btneditarUsuario" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>">
-                          <i class="fa fa-edit"></i>
+                        <button type="button" class="btneditarUsuario" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>" style="border: none"  >
+                        <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"])?>" >
-                          <i class="fa fa-trash"></i>
+                        <button type="button" class="btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"])?>" style="border: none" >
+                        <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
                         </button>
                       </td>
 
