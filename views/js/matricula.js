@@ -45,6 +45,51 @@ $(document).on("click", ".btn-ver-perfil", function() {
     });
 });
 
+// Editar
+$(document).ready(function() {
+    $(".tablaMatricula").on("click", ".btn-editar-matricula", function() {
+        var idMatricula = $(this).attr("idMatricula");
+        var datos = new FormData();
+        datos.append("idMatricula", idMatricula);
+
+        $.ajax({
+            url: "./ajax/matricula.ajax.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(respuesta) {
+                $("#edit-id").val(respuesta.id);
+                $("#edit-pnombre").val(respuesta.PNombre);
+                $("#edit-papellido").val(respuesta.PApellido);
+                $("#edit-fecha").val(respuesta.Fecha_Nacimiento);
+                $("#edit-direccion").val(respuesta.Direccion);
+                $("#edit-snombre").val(respuesta.SNombre);
+                $("#edit-sapellido").val(respuesta.SApellido);
+                $("#edit-telefono").val(respuesta.Telefono);
+                $("#edit-sexo").val(respuesta.Sexo);
+                $("#edit-t_pnombre").val(respuesta.T_PNombre);
+                $("#edit-t_papellido").val(respuesta.T_PApellido);
+                $("#edit-t_fecha").val(respuesta.T_Fecha_Nacimiento);
+                $("#edit-t_cedula").val(respuesta.T_Cedula);
+                $("#edit-t_direccion").val(respuesta.T_Direccion);
+                $("#edit-t_snombre").val(respuesta.T_SNombre);
+                $("#edit-t_sapellido").val(respuesta.T_SApellido);
+                $("#edit-t_telefono").val(respuesta.T_Telefono);
+                $("#edit-t_parentesco").val(respuesta.T_Parentesco);
+                $("#edit-t_sexo").val(respuesta.T_Sexo);
+                $("#edit-codigo").val(respuesta.Codigo_Matricula);
+                $("#edit-fecha_matricula").val(respuesta.Fecha_Matricula);
+                $("#edit-grado").val(respuesta.Grado);
+
+                $('#modal-editar-matricula').modal('show');
+            }
+        });
+    });
+});
+
 
 $(document).ready(function() {
     $(document).on("click", ".btnEliminarMatricula", function() {
@@ -81,7 +126,7 @@ $(document).ready(function() {
                                 confirmButtonText: "Cerrar"
                             }).then(function(result) {
                                 if (result.value) {
-                                    window.location = "matriculas";
+                                    window.location = "index.php?pagina=matricula";
                                 }
                             });
                         }

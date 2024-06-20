@@ -87,6 +87,63 @@ class mdlMatricula
         }
     }
 
+    // editar matricula
+    static public function mdlEditarMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor)
+{
+    try {
+        $conexion = Conexion::conectar();
+        // Iniciar transacción
+        $conexion->beginTransaction();
+
+        // Actualizar datos del tutor
+        $stmt = $conexion->prepare("UPDATE $tablaTutor SET PNombre=:PNombre, SNombre=:SNombre, PApellido=:PApellido, SApellido=:SApellido, Direccion=:Direccion, Cedula=:Cedula, Telefono=:Telefono, Sexo_idSexo=:Sexo_idSexo, Parentesco_idParentesco=:Parentesco_idParentesco WHERE idTutor=:idTutor");
+        $stmt->bindParam(":idTutor", $datosTutor["idTutor"], PDO::PARAM_INT);
+        $stmt->bindParam(":PNombre", $datosTutor["PNombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":SNombre", $datosTutor["SNombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":PApellido", $datosTutor["PApellido"], PDO::PARAM_STR);
+        $stmt->bindParam(":SApellido", $datosTutor["SApellido"], PDO::PARAM_STR);
+        $stmt->bindParam(":Direccion", $datosTutor["Direccion"], PDO::PARAM_STR);
+        $stmt->bindParam(":Cedula", $datosTutor["Cedula"], PDO::PARAM_STR);
+        $stmt->bindParam(":Telefono", $datosTutor["Telefono"], PDO::PARAM_STR);
+        $stmt->bindParam(":Sexo_idSexo", $datosTutor["Sexo_idSexo"], PDO::PARAM_INT);
+        $stmt->bindParam(":Parentesco_idParentesco", $datosTutor["Parentesco_idParentesco"], PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Actualizar datos del alumno
+        $stmt = $conexion->prepare("UPDATE $tablaAlumno SET PNombre=:PNombre, SNombre=:SNombre, PApellido=:PApellido, SApellido=:SApellido, Direccion=:Direccion, Fecha_Nacimiento=:Fecha_Nacimiento, Telefono=:Telefono, Sexo_idSexo=:Sexo_idSexo WHERE idAlumno=:idAlumno");
+        $stmt->bindParam(":idAlumno", $datosAlumno["idAlumno"], PDO::PARAM_INT);
+        $stmt->bindParam(":PNombre", $datosAlumno["PNombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":SNombre", $datosAlumno["SNombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":PApellido", $datosAlumno["PApellido"], PDO::PARAM_STR);
+        $stmt->bindParam(":SApellido", $datosAlumno["SApellido"], PDO::PARAM_STR);
+        $stmt->bindParam(":Direccion", $datosAlumno["Direccion"], PDO::PARAM_STR);
+        $stmt->bindParam(":Fecha_Nacimiento", $datosAlumno["Fecha_Nacimiento"], PDO::PARAM_STR);
+        $stmt->bindParam(":Telefono", $datosAlumno["Telefono"], PDO::PARAM_STR);
+        $stmt->bindParam(":Sexo_idSexo", $datosAlumno["Sexo_idSexo"], PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Actualizar datos de la matrícula
+        $stmt = $conexion->prepare("UPDATE $tablaMatricula SET Anio_Academico_idAnio_Academico=:Anio_Academico_idAnio_Academico, GradoSeccion_idGradoSeccion=:GradoSeccion_idGradoSeccion, Turno_idTurno=:Turno_idTurno, Fecha=:Fecha WHERE idMatricula=:idMatricula");
+        $stmt->bindParam(":idMatricula", $datosMatricula["idMatricula"], PDO::PARAM_INT);
+        $stmt->bindParam(":Anio_Academico_idAnio_Academico", $datosMatricula["Anio_Academico_idAnio_Academico"], PDO::PARAM_INT);
+        $stmt->bindParam(":GradoSeccion_idGradoSeccion", $datosMatricula["GradoSeccion_idGradoSeccion"], PDO::PARAM_INT);
+        $stmt->bindParam(":Turno_idTurno", $datosMatricula["Turno_idTurno"], PDO::PARAM_INT);
+        $stmt->bindParam(":Fecha", $datosMatricula["Fecha"], PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Confirmar transacción
+        $conexion->commit();
+        return "ok";
+    } catch (PDOException $e) {
+        // Revertir transacción en caso de error
+        $conexion->rollBack();
+        return "error: " . $e->getMessage();
+    } finally {
+        $stmt = null;
+        $conexion = null;
+    }
+}
+
 
     // eliminar
     static public function mdlEliminarMatricula($tabla, $id) {

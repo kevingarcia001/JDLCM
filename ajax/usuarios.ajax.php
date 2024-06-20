@@ -11,6 +11,14 @@ class AjaxUsuario {
         $respuesta = ctrUsuarios::ctrMostrarUsuarios($item, $valor);
         echo json_encode($respuesta);
     }
+
+    public function ajaxVerUsuario() {
+        $item = "idUsuario";
+        $valor = $this->idUsuario;
+        $respuesta = ctrUsuarios::ctrMostrarUsuarios($item, $valor); // Utiliza tu método para obtener datos del usuario
+        echo json_encode($respuesta);
+    }
+
     
     public $idEliminar;
     public function AjaxEliminarUsuario(){
@@ -29,5 +37,11 @@ if (isset($_POST["idUsuarioE"])) {
     $elminar = new AjaxUsuario();
     $elminar->idEliminar = $_POST["idUsuarioE"];
     $elminar->AjaxEliminarUsuario();
+}
+
+if (isset($_POST["idUsuario"])) {
+    $ver = new AjaxUsuario();
+    $ver->idUsuario = $_POST["idUsuario"];
+    $ver->ajaxVerUsuario();
 }
 ?>

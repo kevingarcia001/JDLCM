@@ -5,10 +5,25 @@ require_once "../models/matricula.model.php";
 class AjaxMatricula {
     public $idEliminar;
 
+    public $idMatricula;
+    
+    public function ajaxEditarMatricula() {
+        $item = "id";
+        $valor = $this->idMatricula;
+        $respuesta = ctrMatricula::ctrMostrarMatricula($item, $valor);
+        echo json_encode($respuesta);
+    }
+
     public function AjaxEliminarMatricula() {
         $respuesta = ctrMatricula::ctrEliminarMatricula($this->idEliminar);
         echo $respuesta;
     }
+}
+
+if (isset($_POST["idMatricula"])) {
+    $editar = new AjaxMatricula();
+    $editar->idMatricula = $_POST["idMatricula"];
+    $editar->ajaxEditarMatricula();
 }
 
 if (isset($_POST["idMatriculaE"])) {

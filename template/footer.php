@@ -19,6 +19,11 @@
 <script src="./views/js/perfil.alumno.js"></script>
 <script src="./views/js/matricula.js"></script>
 
+<!-- Validaciones -->
+
+<script src="./assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="./assets/plugins/jquery-validation/additional-methods.min.js"></script>
+
 <!-- Data tables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="./assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

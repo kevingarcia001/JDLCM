@@ -11,7 +11,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>USUARIOS</h1>
+          <h1 class="text-uppercase" style="font-weight: bold;" >USUARIOS</h1>
         </div>
 
       </div>
@@ -28,17 +28,17 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped tablaUsuario">
                 <thead>
-                  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-usuarios">
+                  <button type="button" class="btn btn-sm text-white text-uppercase" data-toggle="modal" data-target="#modal-usuarios" style="font-weight: bold; background-color: #388E3C;  ">
                     AGREGAR USARIO
                   </button>
-                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D" >
+                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Rol</th>
-                    <th>Acciones</th>
+                    <th style="width: 15%">Acciones</th>
                   </tr>
                 </thead>
-                <tbody  class="text-bold text-uppercase" >
+                <tbody class="text-bold text-uppercase">
                   <?php   ?>
                   <?php
                   foreach ($usuarios as $key => $value) {
@@ -51,13 +51,16 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                       <td> <?php echo ($key + 1)  ?></td>
                       <td><?php echo ($value["Nombre"])  ?> </td>
                       <td> <?php echo ($rol["Rol"])  ?> </td>
-                      <td class="text-center">
-                        <button type="button" class="btneditarUsuario" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>" style="border: none"  >
-                        <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
-                        </button>
-                        <button type="button" class="btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"])?>" style="border: none" >
-                        <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
-                        </button>
+                      <td class="text-center table-actions ">
+                        <a class="btnVerUsuario mr-2" data-toggle="modal" data-target="#modal-view-usuarios" idUsuario="1" style="border: none">
+                          <i class="fa fa-eye text-lg text-primary"></i>
+                        </a>
+                        <a class="btneditarUsuario mr-2" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>" style="border: none">
+                          <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
+                        </a>
+                        <a class="btnEliminarUsuario" data-toggle="modal" data-target="#modal-delete" idUsuarioE="<?php echo ($value["idUsuario"]) ?>" style="border: none">
+                          <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
+                        </a>
                       </td>
 
                     </tr>
@@ -80,33 +83,33 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
 <div class="modal fade" id="modal-usuarios">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Agregar Usuarios</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header" style="background-color:#14173D">
+        <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Agregar Usuarios</h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-weight: bold">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" id="quickForm">
           <div class="card-body">
 
             <div class="form-group">
-              <label for="nusuario">Usuario</label>
-              <input type="text" name="nusuario" class="form-control" id="nusuario" placeholder="Correo Electronico">
+              <label for="nusuario" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
+              <input type="text" name="nusuario" class="form-control text-uppercase" id="nusuario" placeholder="Correo Electrónico">
             </div>
             <div class="form-group">
-              <label for="nombre_usuario">Nombre</label>
-              <input type="text" name="nombre_usuario" class="form-control" id="nombre_usuario" placeholder="Nombre">
+              <label for="nombre_usuario" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
+              <input type="text" name="nombre_usuario" class="form-control text-uppercase" id="nombre_usuario" placeholder="Nombre">
             </div>
             <div class="form-group">
-              <label for="password_usurio">Contraseña</label>
-              <input type="password" name="password_usurio" class="form-control" id="password_usurio" placeholder="Contraseña">
+              <label for="password_usurio" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
+              <input type="password" name="password_usurio" class="form-control  " id="password_usurio" placeholder="Contraseña">
             </div>
 
             <div class="form-group">
-              <label for="rol_usuario">Rol</label>
-              <select class="form-control" name="rol_usuario" id="rol_usuario">
-                <option value="">seleccione</option>
+              <label for="rol_usuario" class="text-uppercase"><i class="fas fa-user-tag"></i> Rol</label>
+              <select class="form-control text-uppercase" name="rol_usuario" id="rol_usuario">
+                <option value="">Seleccione</option>
                 <?php
                 $roles = ctrRoles::ctrComboRol();
                 foreach ($roles as $rol) {
@@ -119,8 +122,8 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
             </div>
 
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="text-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
         </form>
@@ -129,46 +132,44 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
       <?php
       $guardarUsuarios = new ctrUsuarios();
       $guardarUsuarios->ctrGuardarUsuarios();
-
       ?>
 
     </div>
-
   </div>
-
 </div>
 
 
+<!-- Editar Usuarios -->
 <div class="modal fade" id="modal-edit-usarios">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Editar Usuarios</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header" style="background-color:#14173D">
+        <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Editar Usuario</h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" id="form-edit-usuario">
           <div class="card-body">
-          <input type="hidden" name="idUsuarioE" id="idUsuarioE">
+            <input type="hidden" name="idUsuarioE" id="idUsuarioE">
             <div class="form-group">
-              <label for="nusuarioE">Usuario</label>
-              <input type="text" name="nusuarioE" class="form-control" id="nusuarioE" placeholder="Correo Electronico">
+              <label for="nusuarioE" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
+              <input type="text" name="nusuarioE" class="form-control " id="nusuarioE" placeholder="Correo Electrónico">
             </div>
             <div class="form-group">
-              <label for="nombre_usuarioE">Nombre</label>
-              <input type="text" name="nombre_usuarioE" class="form-control" id="nombre_usuarioE" placeholder="Nombre">
+              <label for="nombre_usuarioE" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
+              <input type="text" name="nombre_usuarioE" class="form-control text-uppercase" id="nombre_usuarioE" placeholder="Nombre">
             </div>
             <div class="form-group">
-              <label for="password_usurioE">Contraseña</label>
-              <input type="password" name="password_usurioE" class="form-control" id="password_usurioE" placeholder="Contraseña">
+              <label for="password_usurioE" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
+              <input type="password" name="password_usurioE" class="form-control text-uppercase" id="password_usurioE" placeholder="Contraseña">
             </div>
 
             <div class="form-group">
-              <label for="rol_usuarioE">Rol</label>
-              <select class="form-control" name="rol_usuarioE" id="rol_usuarioE">
-                <option value="">seleccione</option>
+              <label for="rol_usuarioE" class="text-uppercase"><i class="fas fa-user-tag"></i> Rol</label>
+              <select class="form-control text-uppercase" name="rol_usuarioE" id="rol_usuarioE">
+                <option value="">Seleccione</option>
                 <?php
                 $roles = ctrRoles::ctrComboRol();
                 foreach ($roles as $rol) {
@@ -181,8 +182,8 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
             </div>
 
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="text-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
         </form>
@@ -193,7 +194,60 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
       $editarUsuarios->ctrEditarUsuario();
       ?>
     </div>
-
   </div>
+</div>
 
+
+
+<!-- VER -->
+<div class="modal fade" id="modal-view-usuarios">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#14173D">
+        <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Ver Usuario</h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-view-usuario">
+          <div class="row">
+            <input type="hidden" name="idUsuarioV" id="idUsuarioV">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="nusuarioV"><i class="fas fa-user"></i> Usuario</label>
+                <p id="nusuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="nombre_usuarioV"><i class="fas fa-user-tag"></i> Nombre</label>
+                <p id="nombre_usuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password_usurioV"><i class="fas fa-key"></i> Contraseña</label>
+                <p id="password_usurioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="rol_usuarioV"><i class="fas fa-user-shield"></i> Rol</label>
+                <p id="rol_usuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+              </div>
+            </div>
+
+          </div>
+          <div class="text-right">
+            <button type="button" class="btn btn-success text-uppercase" data-dismiss="modal" style="font-weight: bold">Cerrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
