@@ -45,7 +45,7 @@ class ctrUsuarios
 
     // controlador mostrar datos en otras tablas
     static public function ctrMostrarUsuarios($item, $valor)
-    {
+    {   
         $tabla = "usuario";
         $respuesta = mdlUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
         return $respuesta;

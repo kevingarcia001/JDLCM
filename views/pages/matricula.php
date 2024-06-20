@@ -1,6 +1,6 @@
 <?php
 
-$matricula = ctrMatricula::ctrMostrarMatricula();
+$matricula = ctrMatricula::ctrListarMatricula();
 // var_dump($matricula);
 ?>
 
@@ -83,7 +83,7 @@ $matricula = ctrMatricula::ctrMostrarMatricula();
                           <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
                             <i class="fa fa-eye text-lg text-primary"></i>
                           </a>
-                          <a class="btn-editar mr-2" data-toggle="modal" data-target="#modal-editar-matricula" idUsuario=" <?php echo ($roles["id"])  ?>"   style="border: none"  >
+                          <a class="btn-editar mr-2" data-toggle="modal" data-target="#modal-editar-matricula" idUsuario=" <?php echo ($value["idMatricula"])  ?>"   style="border: none"  >
                             <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </a>
 

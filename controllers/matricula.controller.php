@@ -3,11 +3,17 @@
 class ctrMatricula
 {
 
+    static public function ctrListarMatricula(){
+       $tabla ="matricula";
+       $respuesta = mdlMatricula::mdlListraMatricula($tabla);
+       return $respuesta;
+    }
+
     // muestra la matricula
-    static public function ctrMostrarMatricula()
+    static public function ctrMostrarMatricula($item, $valor)
     {
         $tabla = "matricula";
-        $respuesta = mdlMatricula::mdlMostrarMatricula($tabla);
+        $respuesta = mdlMatricula::mdlMostrarMatricula($tabla, $item, $valor);
         return $respuesta;
     }
 

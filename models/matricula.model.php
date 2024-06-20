@@ -6,13 +6,20 @@ class mdlMatricula
 {
 
     // listar matricula
-    static public function mdlMostrarMatricula($tabla)
+    static public function mdlListraMatricula($tabla)
     {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();
         $stmt = null;
+    }
+
+    static public function mdlMostrarMatricula($tabla, $item, $valor){
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item= :$item");
+        $stmt->bindParam(":".$item, $valor, PDO::PARAM_STMT);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     // Mfiltro
