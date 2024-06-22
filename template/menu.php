@@ -39,14 +39,7 @@ if (isset($_SESSION['rol'])) {
                     </li>
                 <?php endif; ?>
 
-                <?php if (in_array('roles', $permisos)) : ?>
-                    <li class="nav-item">
-                        <a href="index.php?pagina=roles" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>Roles</p>
-                        </a>
-                    </li>
-                <?php endif; ?>
+          
 
                 <?php if (in_array('matricula', $permisos)) : ?>
                     <li class="nav-item">
