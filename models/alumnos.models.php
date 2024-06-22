@@ -121,7 +121,14 @@ class mdlAlumnos{
     }
 
 
-
+    // getEstudiante
+    public static function mdlGetStudentInfoById($idAlumno) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM VistaReporteEstudiantes WHERE idAlumno = :idAlumno");
+        $stmt->bindParam(":idAlumno", $idAlumno, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     
     
 }
