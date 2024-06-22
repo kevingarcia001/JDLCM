@@ -28,42 +28,4 @@ $(document).ready(function() {
 });
 
 // usuarios
-$(document).ready(function(){
-    $("quickForm").submit(function(event){
-        var nusuario = $("#nusuario").val().trim();
-        var nombreusuario = $("#nusuario").val().trim();
-
-        if(nusuario === ""){
-            event.preventDefault();
-            $("#error-nusuario").html("porfavor, ingresar el usuario");
-            $("#nusuario").addClass("is-invalid");
-        }
-        else{
-            $("#error-nusuario").html("");
-            $("#nusuario").removeClass("is-invalid");
-        }
-        if(nombreusuario === ""){
-            event.preventDefault();
-            $("#error-nusuario").html("porfavor, ingresar un nombre de usuario");
-            $("#nombre_usuario").addClass("is-invalid");
-        }
-        else{
-            $("#error-nombre_usuario").html("");
-            $("#nombre_usuario").removeClass("is-invalid");
-        }
-    });
-    // enviar
-    $('modal-usuarios').on('hide.bs.modal', function(e){
-        if($("#nusuario").hasClass("is-invalid")){
-            e.preventDefault();
-        }
-    });
-    $('#modal-usuarios').on('click', '[data-dismiss="modal"]', function(e) {
-        var errorsPresentes = $("#nom-asignatura").hasClass("is-invalid");
-        if (errorsPresentes) {
-            $("#nusuario").removeClass("is-invalid");
-            $("#error-nusuario").html("");
-        }
-    });
-});
 

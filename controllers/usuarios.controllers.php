@@ -58,36 +58,12 @@ class ctrUsuarios
         if (
             isset($_POST["nusuario"]) && !empty($_POST["nusuario"]) &&
             !empty($_POST["nombre_usuario"]) && !empty($_POST["password_usuario"]) &&
-            !empty($_POST["rol_usuario"])
-        ) {
+            !empty($_POST["rol_usuario"])) {
 
             $nusuario = ($_POST["nusuario"]);
             $nombre = ($_POST["nombre_usuario"]);
             $password = ($_POST["password_usuario"]);
             $rol = ($_POST["rol_usuario"]);
-
-            // **Validation**: Check if fields meet your requirements (e.g., email format, minimum password length)
-            $valid = true; // Flag to track validation status
-            $errorMessages = []; // Array to store error messages
-
-            // Email validation (replace with your specific logic)
-            if (!filter_var($nusuario, FILTER_VALIDATE_EMAIL)) {
-                $valid = false;
-                $errorMessages[] = "El correo electrónico ingresado no es válido.";
-            }
-
-            // Minimum password length validation (replace with your desired length)
-            if (strlen($password) < 8) {
-                $valid = false;
-                $errorMessages[] = "La contraseña debe tener al menos 8 caracteres.";
-            }
-
-            // Check if any validation errors occurred
-            if (!$valid) {
-                $errorMessage = implode("<br>", $errorMessages); // Join error messages
-                echo '<script> Swal.fire({ icon: "error", title: "Error", text: "' . $errorMessage . '", showConfirmButton: true, timer: 3000 }); </script>';
-                return; // Exit if validation fails
-            }
 
             $datos = array(
                 "Usuario" => $nusuario,
@@ -100,7 +76,7 @@ class ctrUsuarios
             $respuesta = mdlUsuarios::mdlGuardarUsuarios($tabla, $datos);
 
             if ($respuesta == "ok") {
-                echo '<script> Swal.fire({ icon: "success", title: "Usuario guardado correctamente", showConfirmButton: false, timer: 3000 }).then(() => { window.location = "index.php?pagina=usuarios"; }); </script>';
+                echo '<script> Swal.fire({ icon: "success", title: "Usuario guardado correctamente", showConfirmButton: false, timer: 3000 }).then(() => { window.location = "usuarios"; }); </script>';
             } else {
                 echo '<script> Swal.fire({ icon: "error", title: "Error", text: "Error al guardar usuario: ' . $respuesta . '", showConfirmButton: true, timer: 3000 }); </script>';
             }

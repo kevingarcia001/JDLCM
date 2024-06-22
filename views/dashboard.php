@@ -9,6 +9,7 @@ if (!isset($_SESSION["validarSession"])) {
     include_once './template/navbar.php';
     include_once './template/menu.php';
 
+
     if (isset($_GET["pagina"])) {
         $pagina = $_GET["pagina"];
         
@@ -16,7 +17,7 @@ if (!isset($_SESSION["validarSession"])) {
         if (PermisoController::tieneAcceso($pagina)) {
             include_once "pages/" . $pagina . ".php";
         } else {
-            echo "Acceso denegado"; // Opcional: Puedes manejar el acceso denegado de otra manera
+            echo "Acceso denegado"; 
         }
     }
 

@@ -76,68 +76,66 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
       </div>
     </div>
   </section>
-
-
 </div>
 
 
 <div class="modal fade" id="modal-usuarios">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color:#14173D">
-        <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Agregar Usuarios</h4>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-weight: bold">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post" enctype="multipart/form-data" id="quickForm">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="nusuario" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
-              <input type="text" name="nusuario" class="form-control text-uppercase" id="nusuario" placeholder="Correo Electrónico">
-              <div class="invalid-feedback" id="error-nusuario"></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#14173D">
+                <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Agregar Usuarios</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-weight: bold">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-              <label for="nombre_usuario" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
-              <input type="text" name="nombre_usuario" class="form-control text-uppercase" id="nombre_usuario" placeholder="Nombre">
-              <div class="invalid-feedback" id="error-nombre_usuario"></div>
+            <div class="modal-body">
+                <form action="" method="post" enctype="multipart/form-data" id="quickForm">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="nusuario" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
+                            <input type="text" name="nusuario" class="form-control text-uppercase" id="nusuario" placeholder="Correo Electrónico">
+                            <div class="invalid-feedback" id="error-nusuario"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre_usuario" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
+                            <input type="text" name="nombre_usuario" class="form-control text-uppercase" id="nombre_usuario" placeholder="Nombre">
+                            <div class="invalid-feedback" id="error-nombre_usuario"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_usuario" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
+                            <input type="password" name="password_usuario" class="form-control" id="password_usuario" placeholder="Contraseña">
+                            <div class="invalid-feedback" id="error-password_usuario"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rol_usuario" class="text-uppercase"><i class="fas fa-user-tag"></i> Rol</label>
+                            <select class="form-control text-uppercase" name="rol_usuario" id="rol_usuario">
+                                <option value="">Seleccione</option>
+                                <?php
+                                $roles = ctrRoles::ctrComboRol();
+                                foreach ($roles as $rol) {
+                                    echo '<option value="' . $rol["idRol"] . '">' . $rol["Rol"] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <div class="invalid-feedback" id="error-rol_usuario"></div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-              <label for="password_usuario" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
-              <input type="password" name="password_usuario" class="form-control" id="password_usuario" placeholder="Contraseña">
-              <div class="invalid-feedback" id="error-password_usuario"></div>
-            </div>
-            <div class="form-group">
-              <label for="rol_usuario" class="text-uppercase"><i class="fas fa-user-tag"></i> Rol</label>
-              <select class="form-control text-uppercase" name="rol_usuario" id="rol_usuario">
-                <option value="">Seleccione</option>
-                <?php
-                $roles = ctrRoles::ctrComboRol();
-                foreach ($roles as $rol) {
-                ?>
-                  <option value="<?php echo $rol["idRol"] ?>"><?php echo $rol["Rol"] ?></option>
-                <?php
-                }
-                ?>
-              </select>
-              <div class="invalid-feedback" id="error-rol_usuario"></div>
-            </div>
-          </div>
-          <div class="text-right">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
-          </div>
-        </form>
-      </div>
-      <?php
-
-      $guardarUsuario = new ctrUsuarios();
-      $guardarUsuario->ctrGuardarUsuarios();
-      ?>
+            <?php
+            
+            $guardarUsuario = new ctrUsuarios();
+            $guardarUsuario->ctrGuardarUsuarios();
+      
+            ?>
+        </div>
     </div>
-  </div>
 </div>
+
 
 <!-- Editar Usuarios -->
 <div class="modal fade" id="modal-edit-usarios">

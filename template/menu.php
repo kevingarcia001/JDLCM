@@ -30,9 +30,12 @@ if (isset($_SESSION['rol'])) {
         <!-- Sidebar Menu -->
         <nav class="mt-2 flex-grow-1">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                
+
                 <?php if (in_array('usuarios', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=usuarios" class="nav-link">
+                        <a href="usuarios" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Usuarios</p>
                         </a>
@@ -41,7 +44,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('roles', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=roles" class="nav-link">
+                        <a href="roles" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Roles</p>
                         </a>
@@ -50,7 +53,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('matricula', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=matricula" class="nav-link">
+                        <a href="matricula" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Matrículas</p>
                         </a>
@@ -59,7 +62,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('alumnos', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=alumnos" class="nav-link">
+                        <a href="alumnos" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Alumnos</p>
                         </a>
@@ -68,7 +71,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('infoAlumno', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=infoAlumno" class="nav-link">
+                        <a href="infoAlumno" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Información Alumno</p>
                         </a>
@@ -77,7 +80,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('asignaturas', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=asignaturas" class="nav-link">
+                        <a href="asignaturas" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
                             <p>Asignaturas</p>
                         </a>
@@ -85,26 +88,24 @@ if (isset($_SESSION['rol'])) {
                 <?php endif; ?>
 
                 <?php if (in_array('hojamatricula', $permisos)) : ?>
-                    <!-- <li class="nav-item">
-                    <a href="index.php?pagina=hojamatricula" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>Hoja de Matrícula</p>
-                    </a>
-                </li> -->
-                <?php endif; ?>
-            </ul>
-        </nav>
-        <?php if (in_array('salir', $permisos)) : ?>
-            <nav class="mt-auto">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="index.php?pagina=salir" class="nav-link">
+                        <a href="hojamatricula" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Hoja de Matrícula</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (in_array('salir', $permisos)) : ?>
+                    <li class="nav-item">
+                        <a href="salir" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Salir</p>
                         </a>
                     </li>
-                </ul>
-            </nav>
-        <?php endif; ?>
+                <?php endif; ?>
+
+            </ul>
+        </nav>
     </div>
 </aside>

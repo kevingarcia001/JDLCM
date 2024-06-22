@@ -1,11 +1,11 @@
 <?php
 include_once './controllers/dahsboard.php';
 // usuarios
-include_once './controllers/usuarios.controllers.php';
-include_once './models/usuarios.model.php';
 // mstricula
 include_once './controllers/matricula.controller.php';
 include_once './models/matricula.model.php';
+include_once './controllers/usuarios.controllers.php';
+include_once './models/usuarios.model.php';
 // año academico
 include_once './controllers/anio_acdemico.controller.php';
 include_once './models/anio_acdemico.model.php';
