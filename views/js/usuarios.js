@@ -103,30 +103,80 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    // Función para cambiar de pestaña
-    $('.btn-anterior').click(function() {
-      var $activeTab = $('#myTab .nav-link.active');
-      var $tabs = $('#myTab .nav-link');
-      var activeTabIndex = $tabs.index($activeTab);
 
-      if (activeTabIndex > 0) {
-        $($tabs[activeTabIndex - 1]).tab('show');
-      }
-    });
-
-    $('.btn-siguiente').click(function() {
-      var $activeTab = $('#myTab .nav-link.active');
-      var $tabs = $('#myTab .nav-link');
-      var activeTabIndex = $tabs.index($activeTab);
-
-      if (activeTabIndex < $tabs.length - 1) {
-        $($tabs[activeTabIndex + 1]).tab('show');
-      }
-    });
-  });
-
+// editar
   $(document).ready(function() {
+    $("#quickFormE").submit(function(event) {
+        var nusuarioE = $("#nusuarioE").val().trim();
+        var nombre_usuarioE = $("#nombre_usuarioE").val().trim();
+        var password_usuarioE = $("#password_usuarioE").val().trim();
+        var rol_usuarioE = $("#rol_usuarioE").val();
+
+        // Validación del campo nusuario (correo electrónico)
+        if (nusuarioE === "") {
+            event.preventDefault();
+            $("#error-nusuarioE").html("Por favor, ingresa el correo electrónico.");
+            $("#nusuarioE").addClass("is-invalid");
+        } else {
+            $("#error-nusuarioE").html("");
+            $("#nusuarioE").removeClass("is-invalid");
+        }
+
+        // Validación del campo nombre_usuario
+        if (nombre_usuarioE === "") {
+            event.preventDefault();
+            $("#error-nombre_usuarioE").html("Por favor, ingresa el nombre.");
+            $("#nombre_usuarioE").addClass("is-invalid");
+        } else {
+            $("#error-nombre_usuarioE").html("");
+            $("#nombre_usuarioE").removeClass("is-invalid");
+        }
+
+        // Validación del campo password_usuario
+        if (password_usuarioE === "") {
+            event.preventDefault();
+            $("#error-password_usuarioE").html("Por favor, ingresa la contraseña.");
+            $("#password_usuarioE").addClass("is-invalid");
+        } else {
+            $("#error-password_usuarioE").html("");
+            $("#password_usuarioE").removeClass("is-invalid");
+        }
+
+        // Validación del campo rol_usuario
+        if (rol_usuarioE === "") {
+            event.preventDefault();
+            $("#error-rol_usuarioE").html("Por favor, selecciona un rol.");
+            $("#rol_usuarioE").addClass("is-invalid");
+        } else {
+            $("#error-rol_usuarioE").html("");
+            $("#rol_usuarioE").removeClass("is-invalid");
+        }
+    });
+
+    // Evitar que el modal se cierre si hay errores
+    $('#modal-edit-usarios').on('hide.bs.modal', function(e) {
+        if ($("#nusuarioE").hasClass("is-invalid") ||
+            $("#nombre_usuarioE").hasClass("is-invalid") ||
+            $("#password_usuarioE").hasClass("is-invalid") ||
+            $("#rol_usuarioE").hasClass("is-invalid")) {
+            e.preventDefault(); // Evitar que se cierre el modal
+        }
+    });
+
+    // Limpiar errores al cerrar el modal
+    $('#modal-edit-usarios').on('click', '[data-dismiss="modal"]', function(e) {
+        $("#nusuarioE").removeClass("is-invalid");
+        $("#error-nusuarioE").html("");
+        $("#nombre_usuarioE").removeClass("is-invalid");
+        $("#error-nombre_usuarioE").html("");
+        $("#password_usuarioE").removeClass("is-invalid");
+        $("#error-password_usuarioE").html("");
+        $("#rol_usuarioE").removeClass("is-invalid");
+        $("#error-rol_usuarioE").html("");
+    });
+});
+
+$(document).ready(function() {
     $("#quickForm").submit(function(event) {
         var nusuario = $("#nusuario").val().trim();
         var nombre_usuario = $("#nombre_usuario").val().trim();

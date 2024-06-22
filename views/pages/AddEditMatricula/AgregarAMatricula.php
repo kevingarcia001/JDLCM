@@ -81,7 +81,7 @@
                                         <div class="form-group">
                                             <label for="snombre" class="text-uppercase"><i class="fas fa-user"></i> Segundo Nombre</label>
                                             <input type="text" name="snombre" class="form-control text-uppercase" id="snombre" placeholder="Segundo Nombre">
-                                            <div class="invalid-feedback" id="error-asegundoapellido"></div>
+                                            <div class="invalid-feedback" id="error-asegunnombre"></div>
 
                                         </div>
                                         <div class="form-group">
@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="telefono" class="text-uppercase"><i class="fas fa-phone"></i> Teléfono</label>
-                                            <input type="text" name="telefono" class="form-control text-uppercase" id="telefono" placeholder="Teléfono">
+                                            <input type="number" name="telefono" class="form-control text-uppercase" id="telefono" placeholder="Teléfono">
                                             <div class="invalid-feedback" id="error-atelefono"></div>
 
                                         </div>
@@ -132,16 +132,16 @@
                                             <div class="invalid-feedback" id="error-tprimerapellido"></div>
 
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="t_fecha" class="text-uppercase"> <i class="fas fa-calendar-alt"></i> Fecha Nacimiento</label>
                                             <input type="date" name="t_fecha" class="form-control text-uppercase" id="t_fecha" placeholder="Fecha Nacimiento">
                                             <div class="invalid-feedback" id="error-tfecha"></div>
 
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label for="t_cedula" class="text-uppercase"><i class="fas fa-id-card"></i> Cédula</label>
                                             <input type="text" name="t_cedula" class="form-control text-uppercase" id="t_cedula" placeholder="Cédula">
-                                            <div class="invalid-feedback" id="error-tfecha"></div>
+                                            <div class="invalid-feedback" id="error-tcedula"></div>
 
                                         </div>
                                         <div class="form-group">
@@ -166,7 +166,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="t_telefono" class="text-uppercase"><i class="fas fa-phone"></i> Teléfono</label>
-                                            <input type="text" name="t_telefono" class="form-control text-uppercase" id="t_telefono" placeholder="Teléfono">
+                                            <input type="number" name="t_telefono" class="form-control text-uppercase" id="t_telefono" placeholder="Teléfono">
                                             <div class="invalid-feedback" id="error-ttelefono"></div>
 
                                         </div>
@@ -199,7 +199,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <div class="invalid-feedback" id="error-sexo"></div>
+                                            <div class="invalid-feedback" id="error-tsexo"></div>
 
                                         </div>
                                     </div>

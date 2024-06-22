@@ -148,20 +148,26 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" enctype="multipart/form-data" id="form-edit-usuario">
+        <form action="" method="post" enctype="multipart/form-data" id="quickFormE">
           <div class="card-body">
             <input type="hidden" name="idUsuarioE" id="idUsuarioE">
             <div class="form-group">
               <label for="nusuarioE" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
-              <input type="text" name="nusuarioE" class="form-control " id="nusuarioE" placeholder="Correo Electrónico">
+              <input type="email" name="nusuarioE" class="form-control " id="nusuarioE" placeholder="Correo Electrónico">
+              <div class="invalid-feedback" id="error-nusuarioE"></div>
+
             </div>
             <div class="form-group">
               <label for="nombre_usuarioE" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
               <input type="text" name="nombre_usuarioE" class="form-control text-uppercase" id="nombre_usuarioE" placeholder="Nombre">
+              <div class="invalid-feedback" id="error-nombre_usuarioE"></div>
+
             </div>
             <div class="form-group">
               <label for="password_usurioE" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
               <input type="password" name="password_usurioE" class="form-control text-uppercase" id="password_usurioE" placeholder="Contraseña">
+              <div class="invalid-feedback" id="error-password_usuarioE"></div>
+
             </div>
 
             <div class="form-group">
@@ -177,6 +183,8 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                 }
                 ?>
               </select>
+              <div class="invalid-feedback" id="error-rol_usuarioE"></div>
+
             </div>
 
           </div>

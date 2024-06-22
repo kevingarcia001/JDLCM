@@ -18,68 +18,68 @@ class ctrMatricula
     }
 
 
-    static public function ctrVerMatricula($idMatricula)
-    {
-        return mdlMatricula::mdlVerMatricula($idMatricula);
+    static public function ctrcargamatricula($idMatricula){
+        $tabla = "matricula";
+        $respuesta = mdlMatricula::cargarDatosMatricula($idMatricula, $tabla);
+        return $respuesta;
     }
 
 
 
-    static public function ctrCrearMatricula()
-    {
-        if (isset($_POST["pnombre"]) && !empty($_POST["pnombre"]) && !empty($_POST["snombre"])          
-        && !empty($_POST["papellido"]) && !empty($_POST["sapellido"]) 
-        && !empty($_POST["direccion"]) && !empty($_POST["telefono"]) 
-        && !empty($_POST["sexo"]) && !empty($_POST["t_pnombre"]) 
-        && !empty($_POST["t_snombre"]) && !empty($_POST["t_papellido"]) 
-        && !empty($_POST["t_direccion"]) && !empty($_POST["t_cedula"]) 
-        && !empty($_POST["t_telefono"]) && !empty($_POST["t_sexo"]) 
-        && !empty($_POST["t_parentesco"]) && !empty($_POST["anio_academico"]) 
-        && !empty($_POST["grado"]) && !empty($_POST["turno"]) 
-        
-        
+    static public function ctrCrearMatricula() {
+        if (
+            isset($_POST["pnombre"]) && !empty($_POST["pnombre"]) && 
+            !empty($_POST["snombre"]) && !empty($_POST["papellido"]) && 
+            !empty($_POST["sapellido"]) && !empty($_POST["direccion"]) && 
+            !empty($_POST["telefono"]) && !empty($_POST["sexo"]) && 
+            !empty($_POST["t_pnombre"]) && !empty($_POST["t_snombre"]) && 
+            !empty($_POST["t_papellido"]) && !empty($_POST["t_direccion"]) && 
+            !empty($_POST["t_cedula"]) && !empty($_POST["t_telefono"]) && 
+            !empty($_POST["t_sexo"]) && !empty($_POST["t_parentesco"]) && 
+            !empty($_POST["anio_academico"]) && !empty($_POST["grado"]) && 
+            !empty($_POST["turno"])
         ) {
             // Datos del alumno
             $datosAlumno = array(
-                "PNombre" => $_POST["pnombre"],
-                "SNombre" => $_POST["snombre"],
-                "PApellido" => $_POST["papellido"],
-                "SApellido" => $_POST["sapellido"],
-                "Direccion" => $_POST["direccion"],
-                "Fecha_Nacimiento" => $_POST["fecha"],
-                "Telefono" => $_POST["telefono"],
-                "Sexo_idSexo" => $_POST["sexo"]
+                "PNombre" => htmlspecialchars($_POST["pnombre"]),
+                "SNombre" => htmlspecialchars($_POST["snombre"]),
+                "PApellido" => htmlspecialchars($_POST["papellido"]),
+                "SApellido" => htmlspecialchars($_POST["sapellido"]),
+                "Direccion" => htmlspecialchars($_POST["direccion"]),
+                "Fecha_Nacimiento" => htmlspecialchars($_POST["fecha"]),
+                "Telefono" => htmlspecialchars($_POST["telefono"]),
+                "Sexo_idSexo" => htmlspecialchars($_POST["sexo"])
             );
-
+    
             // Datos del tutor
             $datosTutor = array(
-                "PNombre" => $_POST["t_pnombre"],
-                "SNombre" => $_POST["t_snombre"],
-                "PApellido" => $_POST["t_papellido"],
-                "SApellido" => $_POST["t_sapellido"],
-                "Direccion" => $_POST["t_direccion"],
-                "Cedula" => $_POST["t_cedula"],
-                "Telefono" => $_POST["t_telefono"],
-                "Sexo_idSexo" => $_POST["t_sexo"],
-                "Parentesco_idParentesco" => $_POST["t_parentesco"]
+                "PNombre" => htmlspecialchars($_POST["t_pnombre"]),
+                "SNombre" => htmlspecialchars($_POST["t_snombre"]),
+                "PApellido" => htmlspecialchars($_POST["t_papellido"]),
+                "SApellido" => htmlspecialchars($_POST["t_sapellido"]),
+                "Direccion" => htmlspecialchars($_POST["t_direccion"]),
+                "Cedula" => htmlspecialchars($_POST["t_cedula"]),
+                "Telefono" => htmlspecialchars($_POST["t_telefono"]),
+                "Sexo_idSexo" => htmlspecialchars($_POST["t_sexo"]),
+                "Parentesco_idParentesco" => htmlspecialchars($_POST["t_parentesco"])
             );
-
+    
             // Datos de la matrícula
             $datosMatricula = array(
                 "CodMatricula" => null, 
-                "Anio_Academico_idAnio_Academico" => $_POST["anio_academico"],
-                "GradoSeccion_idGradoSeccion" => $_POST["grado"],
-                "Turno_idTurno" => $_POST["turno"],
+                "Anio_Academico_idAnio_Academico" => htmlspecialchars($_POST["anio_academico"]),
+                "GradoSeccion_idGradoSeccion" => htmlspecialchars($_POST["grado"]),
+                "Turno_idTurno" => htmlspecialchars($_POST["turno"]),
                 "Alumnos_idAlumno" => null, // Se asignará en el modelo después de insertar el alumno
                 "Fecha" => date('Y-m-d') // O la fecha que necesites
             );
-
+    
             $tablaMatricula = "matricula";
             $tablaAlumno = "alumnos";
             $tablaTutor = "tutor";
-
+    
             $respuesta = mdlMatricula::mdlCrearMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor);
-
+    
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
@@ -88,7 +88,7 @@ class ctrMatricula
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location = "index.php?pagina=matriculas";
+                            window.location = "matriculas";
                         });
                     </script>';
             } else {
@@ -104,6 +104,7 @@ class ctrMatricula
             }
         }
     }
+    
 
     static public function ctrEditarMatricula()
     {
@@ -159,7 +160,7 @@ class ctrMatricula
                         showConfirmButton: false,
                         timer: 3000
                     }).then(() => {
-                        window.location = "index.php?pagina=matriculas";
+                        window.location = "matriculas";
                     });
                 </script>';
             } else {

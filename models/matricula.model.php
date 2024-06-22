@@ -37,26 +37,33 @@ class mdlMatricula
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
-    static public function mdlVerMatricula($idMatricula)
-    {
+    public static function cargarDatosMatricula($idMatricula, $tabla) {
         try {
             $conexion = Conexion::conectar();
-            $stmt = $conexion->prepare("SELECT * FROM matricula 
-                                        JOIN alumnos ON matricula.Alumnos_idAlumno = alumnos.idAlumno 
-                                        JOIN tutor ON alumnos.Tutor_idTutor = tutor.idTutor
-                                        WHERE matricula.idMatricula = :idMatricula");
-            $stmt->bindParam(":idMatricula", $idMatricula, PDO::PARAM_INT);
+
+            // Consultar datos de la matrícula, alumno y tutor
+            $stmt = $conexion->prepare("SELECT m.idMatricula, m.CodigoMatricula, m.FechaMatricula, m.Grado_idGrado,
+                                        a.idAlumno, a.PNombre AS AlumnoPNombre, a.SNombre AS AlumnoSNombre, a.PApellido AS AlumnoPApellido, a.SApellido AS AlumnoSApellido,
+                                        a.Fecha_Nacimiento AS AlumnoFechaNacimiento, a.Direccion AS AlumnoDireccion, a.Telefono AS AlumnoTelefono, a.Sexo_idSexo AS AlumnoSexo,
+                                        t.idTutor, t.PNombre AS TutorPNombre, t.SNombre AS TutorSNombre, t.PApellido AS TutorPApellido, t.SApellido AS TutorSApellido,
+                                        t.Fecha_Nacimiento AS TutorFechaNacimiento, t.Cedula AS TutorCedula, t.Direccion AS TutorDireccion, t.Telefono AS TutorTelefono,
+                                        t.Parentesco_idParentesco AS TutorParentesco, t.Sexo_idSexo AS TutorSexo
+                                        FROM matricula m
+                                        INNER JOIN alumnos a ON m.Alumnos_idAlumno = a.idAlumno
+                                        INNER JOIN tutor t ON m.Tutor_idTutor = t.idTutor
+                                        WHERE m.idMatricula = :idMatricula");
+            $stmt->bindParam(':idMatricula', $idMatricula, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $datos = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $datos;
+
         } catch (PDOException $e) {
-            return "error: " . $e->getMessage();
-        } finally {
-            $stmt = null;
-            $conexion = null;
+            return false;
         }
     }
+
 
     static public function mdlCrearMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor)
     {
@@ -123,7 +130,7 @@ class mdlMatricula
         $stmt->bindParam(":SNombre", $datosAlumno["SNombre"], PDO::PARAM_STR);
         $stmt->bindParam(":PApellido", $datosAlumno["PApellido"], PDO::PARAM_STR);
         $stmt->bindParam(":SApellido", $datosAlumno["SApellido"], PDO::PARAM_STR);
-        $stmt->bindParam(":Direccion", $datosAlumno["Direccion"], PDO::PARAM_STR);
+        $stmt->bindParam(":Direccion", $datosAlumno["Direccion"],  PDO::PARAM_STR);
         $stmt->bindParam(":Fecha_Nacimiento", $datosAlumno["Fecha_Nacimiento"], PDO::PARAM_STR);
         $stmt->bindParam(":Telefono", $datosAlumno["Telefono"], PDO::PARAM_STR);
         $stmt->bindParam(":Sexo_idSexo", $datosAlumno["Sexo_idSexo"], PDO::PARAM_INT);

@@ -2,6 +2,8 @@
 
 $matricula = ctrMatricula::ctrListarMatricula();
 // var_dump($matricula);
+
+
 ?>
 
 <div class="content-wrapper">
@@ -78,11 +80,12 @@ $matricula = ctrMatricula::ctrListarMatricula();
                           <a class="btnEditarmatricula mr-2" data-toggle="modal" data-target="#modal-editar-matricula" idMatricula="<?php echo ($value["idMatricula"])?>" style="border: none"  >
                             <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </a>
-
+                         
                           <a class="btnEliminarMatricula mr-2"  idMatriculaE="<?php echo ($value["idMatricula"])?>"  style="border: none" >
                             <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
                           </a>
                         </div>
+
                        
                         <!-- <div class="btn-group">
                           <button class="btn btn-secondary btn-sm btn-ver-perfil" data-profile="alumno">
@@ -259,7 +262,6 @@ $matricula = ctrMatricula::ctrListarMatricula();
   </div>
 </div>
 
-
 <div class="modal fade" id="modal-editar-matricula">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -285,50 +287,55 @@ $matricula = ctrMatricula::ctrListarMatricula();
 
                 <!-- Contenido de las pestañas -->
                 <form action="" method="post" enctype="multipart/form-data" class="mt-3" id="form-edit-matriucula">
-                <input type="hidden" name="idMatricula" id="idMatricula">
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content" id="editarMatriculaTabContent">
                         <!-- Pestaña 1 - Datos Alumno -->
-                        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pnombre" class="text-uppercase"><i class="fas fa-user"></i> Primer Nombre</label>
-                                            <input type="text" name="pnombre" class="form-control text-uppercase" id="edit-pnombre" placeholder="Primer Nombre">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="papellido" class="text-uppercase"><i class="fas fa-user"></i> Primer Apellido</label>
-                                            <input type="text" name="papellido" class="form-control text-uppercase" id="edit-papellido" placeholder="Primer Apellido">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="fecha" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Fecha Nacimiento</label>
-                                            <input type="date" name="fecha" class="form-control text-uppercase" id="edit-fecha" placeholder="Fecha Nacimiento">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="direccion" class="text-uppercase"><i class="fas fa-map-marker-alt"></i> Dirección</label>
-                                            <input type="text" name="direccion" class="form-control text-uppercase" id="edit-direccion" placeholder="Dirección">
-                                        </div>
+                        <div class="tab-pane fade show active" id="editar-tab1" role="tabpanel" aria-labelledby="editar-tab1-tab">
+                            <div class="row">
+                                <input type="hidden" name="matriculaE" id="matriculaE" >
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-pnombre" class="text-uppercase"><i class="fas fa-user"></i> Primer Nombre</label>
+                                        <input type="text" name="edit-pnombre" class="form-control text-uppercase" id="edit-pnombre" placeholder="Primer Nombre">
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="snombre" class="text-uppercase"><i class="fas fa-user"></i> Segundo Nombre</label>
-                                            <input type="text" name="snombre" class="form-control text-uppercase" id="edit-snombre" placeholder="Segundo Nombre">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sapellido" class="text-uppercase"><i class="fas fa-user"></i> Segundo Apellido</label>
-                                            <input type="text" name="sapellido" class="form-control text-uppercase" id="edit-sapellido" placeholder="Segundo Apellido">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="telefono" class="text-uppercase"><i class="fas fa-phone"></i> Teléfono</label>
-                                            <input type="text" name="telefono" class="form-control text-uppercase" id="edit-telefono" placeholder="Teléfono">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sexo" class="text-uppercase"><i class="fas fa-venus-mars"></i> Sexo</label>
-                                            <select class="form-control text-uppercase" name="sexo" id="edit-sexo">
-                                                <option value="">Seleccione</option>
-                                                <!-- Aquí debe cargarse dinámicamente con JavaScript -->
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="edit-papellido" class="text-uppercase"><i class="fas fa-user"></i> Primer Apellido</label>
+                                        <input type="text" name="edit-papellido" class="form-control text-uppercase" id="edit-papellido" placeholder="Primer Apellido">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-fecha" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Fecha Nacimiento</label>
+                                        <input type="date" name="edit-fecha" class="form-control text-uppercase" id="edit-fecha" placeholder="Fecha Nacimiento">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-direccion" class="text-uppercase"><i class="fas fa-map-marker-alt"></i> Dirección</label>
+                                        <input type="text" name="edit-direccion" class="form-control text-uppercase" id="edit-direccion" placeholder="Dirección">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-snombre" class="text-uppercase"><i class="fas fa-user"></i> Segundo Nombre</label>
+                                        <input type="text" name="edit-snombre" class="form-control text-uppercase" id="edit-snombre" placeholder="Segundo Nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-sapellido" class="text-uppercase"><i class="fas fa-user"></i> Segundo Apellido</label>
+                                        <input type="text" name="edit-sapellido" class="form-control text-uppercase" id="edit-sapellido" placeholder="Segundo Apellido">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-telefono" class="text-uppercase"><i class="fas fa-phone"></i> Teléfono</label>
+                                        <input type="text" name="edit-telefono" class="form-control text-uppercase" id="edit-telefono" placeholder="Teléfono">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-sexo" class="text-uppercase"><i class="fas fa-venus-mars"></i> Sexo</label>
+                                        <select class="form-control text-uppercase" name="edit-sexo" id="edit-sexo">
+                                        <option value="">Seleccione</option>
+                                                <?php
+                                                $sexos = ctrSexo::ctrComboSexo();
+                                                foreach ($sexos as $sexo) {
+                                                ?>
+                                                    <option value="<?php echo $sexo["idSexo"] ?>"><?php echo $sexo["Sexo"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -374,15 +381,29 @@ $matricula = ctrMatricula::ctrListarMatricula();
                                     <div class="form-group">
                                         <label for="edit-t_parentesco" class="text-uppercase"><i class="fas fa-users"></i> Parentesco</label>
                                         <select class="form-control text-uppercase" name="edit-t_parentesco" id="edit-t_parentesco">
-                                            <option value="">Seleccione</option>
-                                            <!-- Aquí puedes cargar opciones desde PHP si es necesario -->
+                                        <option value="">Seleccione</option>
+                                                <?php
+                                                $parentesco = ctrPerentesco::ctrComboParentesco();
+                                                foreach ($parentesco as $pariente) {
+                                                ?>
+                                                    <option value="<?php echo $pariente["idParentesco"] ?>"><?php echo $pariente["Parentesco"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-t_sexo" class="text-uppercase"><i class="fas fa-venus-mars"></i> Sexo</label>
                                         <select class="form-control text-uppercase" name="edit-t_sexo" id="edit-t_sexo">
                                             <option value="">Seleccione</option>
-                                            <!-- Aquí puedes cargar opciones desde PHP si es necesario -->
+                                                <?php
+                                                $sexos = ctrSexo::ctrComboSexo();
+                                                foreach ($sexos as $sexo) {
+                                                ?>
+                                                    <option value="<?php echo $sexo["idSexo"] ?>"><?php echo $sexo["Sexo"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
                                         </select>
                                     </div>
                                 </div>
@@ -390,20 +411,75 @@ $matricula = ctrMatricula::ctrListarMatricula();
                         </div>
                         <!-- Pestaña 3 - Información Matrícula -->
                         <div class="tab-pane fade" id="editar-tab3" role="tabpanel" aria-labelledby="editar-tab3-tab">
-                            <div class="form-group">
-                                <label for="edit-codigo" class="text-uppercase"><i class="fas fa-id-card"></i> Código de Matrícula</label>
-                                <input type="text" name="edit-codigo" class="form-control text-uppercase" id="edit-codigo" placeholder="Código de Matrícula">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-fecha_matricula" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Fecha de Matrícula</label>
-                                <input type="date" name="edit-fecha_matricula" class="form-control text-uppercase" id="edit-fecha_matricula" placeholder="Fecha de Matrícula">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-grado" class="text-uppercase"><i class="fas fa-graduation-cap"></i> Grado</label>
-                                <select class="form-control text-uppercase" name="edit-grado" id="edit-grado">
-                                    <option value="">Seleccione</option>
-                                    <!-- Aquí puedes cargar opciones desde PHP si es necesario -->
-                                </select>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="edit-anio_academico" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Año Académico</label>
+                                            <select class="form-control text-uppercase" name="edit-anio_academico" id="edit-anio_academico">
+                                                <option value="">Seleccione</option>
+                                                <?php
+                                                $anioAcademico = ctrAnioAcademico::ctrComboAnioAcademico();
+                                                foreach ($anioAcademico as $anioac) {
+                                                ?>
+                                                    <option value="<?php echo $anioac["idAnio_Academico"] ?>"><?php echo $anioac["Anio_Academico"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                         
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit-seccion" class="text-uppercase"><i class="fas fa-columns"></i> Sección</label>
+                                            <select class="form-control text-uppercase" name="edit-seccion" id="edit-seccion">
+                                                <option value="">Seleccione</option>
+                                                <?php
+                                                $secciones = ctrSeccion::ctrComboSecciones();
+                                                foreach ($secciones as $seccion) {
+                                                ?>
+                                                    <option value="<?php echo $seccion["idSeccion"] ?>"><?php echo $seccion["NSecc"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="edit-turno" class="text-uppercase"><i class="fas fa-clock"></i> Turno</label>
+                                            <select class="form-control text-uppercase" name="edit-turno" id="edit-turno">
+                                                <option value="">Seleccione</option>
+                                                <?php
+                                                $turnos = ctrTurno::ctrComboTurno();
+                                                foreach ($turnos as $turno) {
+                                                ?>
+                                                    <option value="<?php echo $turno["idTurno"] ?>"><?php echo $turno["Turno"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edit-grado" class="text-uppercase" ><i class="fas fa-graduation-cap"></i> Grado</label>
+                                            <select class="form-control text-uppercase" name="edit-grado" id="edit-grado">
+                                                <option value="">Seleccione</option>
+                                                <?php
+                                                $grados = ctrGrado::ctrComboGrados();
+                                                foreach ($grados as $grado) {
+                                                ?>
+                                                    <option value="<?php echo $grado["idGrado"] ?>"><?php echo $grado["Grado"] ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                           
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -413,6 +489,10 @@ $matricula = ctrMatricula::ctrListarMatricula();
                         </button>
                     </div>
                 </form>
+                <?php
+      ctrMatricula::ctrEditarMatricula();
+      ?>
+
             </div>
         </div>
     </div>

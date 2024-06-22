@@ -89,7 +89,11 @@ class ctrUsuarios
     // Editar
     static public function ctrEditarUsuario()
     {
-        if (isset($_POST["idUsuarioE"])) {
+        if (isset($_POST["idUsuarioE"]) 
+             && !empty($_POST["nusuarioE"]) &&
+            !empty($_POST["nombre_usuarioE"]) && !empty($_POST["password_usuarioE"]) &&
+            !empty($_POST["rol_usuarioE"])
+        ) {
             $idUsuario = $_POST["idUsuarioE"];
             $usuario = $_POST["nusuarioE"];
             $nombre = $_POST["nombre_usuarioE"];
