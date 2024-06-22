@@ -96,7 +96,7 @@ class ctrMatricula
 
     static public function ctrEditarMatricula()
     {
-        if (isset($_POST["edit-id"])) {
+        if (isset($_POST["matriculaE"])) {
             // Datos del alumno
             $datosAlumno = array(
                 "idAlumno" => $_POST["edit-idAlumno"],
@@ -172,4 +172,10 @@ class ctrMatricula
         $respuesta = mdlMatricula::mdlEliminarMatricula($tabla, $id);
         return $respuesta;
     }
+
+   
+        public static function ctrObtenerMatricula($idMatricula) {
+            return mdlMatricula::obtenerMatriculaPorId($idMatricula);
+        }
+    
 }

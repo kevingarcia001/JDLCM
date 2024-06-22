@@ -89,7 +89,9 @@ $(document).ready(function() {
                 $("#idUsuarioV").val(respuesta.idUsuario);
                 $("#nusuarioV").text(respuesta.Usuario);
                 $("#nombre_usuarioV").text(respuesta.Nombre);
-                $("#rol_usuarioV").text(respuesta.Rol);
+                $("#nombre_usuarioV").text(respuesta.Nombre);
+                $("#password_usurioV").text(respuesta.Contrasena);
+                $("#rol_usuarioV").text(respuesta.Rol_idRol);
 
                 // Mostrar el modal de visualización
                 $("#modal-view-usuarios").modal("show");
@@ -126,4 +128,31 @@ $(document).ready(function() {
 
 
 
-                  
+  $(document).ready(function(){
+    $("quickForm").submit(function(event){
+        var nusuario = $("#nusuario").val().trim();
+
+        if(nusuario === ""){
+            event.preventDefault();
+            $("#error-nusuario").html("porfavor, ingresar el usuario");
+            $("#nusuario").addClass("is-invalid");
+        }
+        else{
+            $("#error-nusuario").html("");
+            $("#nusuario").removeClass("is-invalid");
+        }
+    });
+    // enviar
+    $('modal-usuarios').on('hide.bs.modal', function(e){
+        if($("#nusuario").hasClass("is-invalid")){
+            e.preventDefault();
+        }
+    });
+    $('#modal-usuarios').on('click', '[data-dismiss="modal"]', function(e) {
+        var errorsPresentes = $("#nom-asignatura").hasClass("is-invalid");
+        if (errorsPresentes) {
+            $("#nusuario").removeClass("is-invalid");
+            $("#error-nusuario").html("");
+        }
+    });
+});

@@ -18,6 +18,7 @@
 <script src="./views/js/filtros.js"></script>
 <script src="./views/js/perfil.alumno.js"></script>
 <script src="./views/js/matricula.js"></script>
+<script src="./views/js/inputsValidaciones.js"></script>
 
 <!-- Validaciones -->
 

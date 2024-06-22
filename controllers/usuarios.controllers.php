@@ -3,7 +3,8 @@
 class ctrUsuarios
 {
 
-    static public function ctrIniciarSesion() {
+    static public function ctrIniciarSesion()
+    {
         if (isset($_POST["log_user"]) && isset($_POST["log_pass"])) {
             $usuario = $_POST["log_user"];
             $contraseña = $_POST["log_pass"];
@@ -45,7 +46,7 @@ class ctrUsuarios
 
     // controlador mostrar datos en otras tablas
     static public function ctrMostrarUsuarios($item, $valor)
-    {   
+    {
         $tabla = "usuario";
         $respuesta = mdlUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
         return $respuesta;
@@ -54,17 +55,44 @@ class ctrUsuarios
     // funcion crear usuarios
     static public function ctrGuardarUsuarios()
     {
-        if (isset($_POST["nusuario"])) {
-            $nusuario = $_POST["nusuario"];
-            $nombre = $_POST["nombre_usuario"];
-            $password = $_POST["password_usuario"];
-            $rol = $_POST["rol_usuario"];
+        if (
+            isset($_POST["nusuario"]) && !empty($_POST["nusuario"]) &&
+            !empty($_POST["nombre_usuario"]) && !empty($_POST["password_usuario"]) &&
+            !empty($_POST["rol_usuario"])
+        ) {
 
-            // $encriptar_contraseña = password_hash($password, PASSWORD_DEFAULT);
+            $nusuario = ($_POST["nusuario"]);
+            $nombre = ($_POST["nombre_usuario"]);
+            $password = ($_POST["password_usuario"]);
+            $rol = ($_POST["rol_usuario"]);
+
+            // **Validation**: Check if fields meet your requirements (e.g., email format, minimum password length)
+            $valid = true; // Flag to track validation status
+            $errorMessages = []; // Array to store error messages
+
+            // Email validation (replace with your specific logic)
+            if (!filter_var($nusuario, FILTER_VALIDATE_EMAIL)) {
+                $valid = false;
+                $errorMessages[] = "El correo electrónico ingresado no es válido.";
+            }
+
+            // Minimum password length validation (replace with your desired length)
+            if (strlen($password) < 8) {
+                $valid = false;
+                $errorMessages[] = "La contraseña debe tener al menos 8 caracteres.";
+            }
+
+            // Check if any validation errors occurred
+            if (!$valid) {
+                $errorMessage = implode("<br>", $errorMessages); // Join error messages
+                echo '<script> Swal.fire({ icon: "error", title: "Error", text: "' . $errorMessage . '", showConfirmButton: true, timer: 3000 }); </script>';
+                return; // Exit if validation fails
+            }
+
             $datos = array(
                 "Usuario" => $nusuario,
                 "Nombre" => $nombre,
-                "Contrasena" => $password,
+                "Contrasena" => $password, // Consider using password hashing for security
                 "Rol_idRol" => $rol,
             );
 
@@ -72,40 +100,26 @@ class ctrUsuarios
             $respuesta = mdlUsuarios::mdlGuardarUsuarios($tabla, $datos);
 
             if ($respuesta == "ok") {
-                echo '<script>
-                        Swal.fire({
-                            icon: "success",
-                            title: "Usuario guardado correctamente",
-                            showConfirmButton: false,
-                            timer: 3000
-                        }).then(() => {
-                            window.location = "index.php?pagina=usuarios";
-                        });
-                      </script>';
+                echo '<script> Swal.fire({ icon: "success", title: "Usuario guardado correctamente", showConfirmButton: false, timer: 3000 }).then(() => { window.location = "index.php?pagina=usuarios"; }); </script>';
             } else {
-                echo '<script>
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error",
-                            text: "Error al guardar usuario: ' . $respuesta . '",
-                            showConfirmButton: true,
-                            timer: 3000
-                        });
-                      </script>';
+                echo '<script> Swal.fire({ icon: "error", title: "Error", text: "Error al guardar usuario: ' . $respuesta . '", showConfirmButton: true, timer: 3000 }); </script>';
             }
         }
     }
 
 
-      // Editar
-      static public function ctrEditarUsuario() {
+
+
+    // Editar
+    static public function ctrEditarUsuario()
+    {
         if (isset($_POST["idUsuarioE"])) {
             $idUsuario = $_POST["idUsuarioE"];
-            $usuario= $_POST["nusuarioE"];
+            $usuario = $_POST["nusuarioE"];
             $nombre = $_POST["nombre_usuarioE"];
             $contrasena = $_POST["password_usurioE"];
             $rol = $_POST["rol_usuarioE"];
-            
+
             if (!empty($contrasena)) {
                 $contrasena_encriptada = password_hash($contrasena, PASSWORD_DEFAULT);
             } else {
@@ -114,15 +128,15 @@ class ctrUsuarios
                 $contrasena_encriptada = $usuarioExistente["Contrasena"];
             }
             // Clave de recuperación
-    
+
 
             $datos = array(
                 "idUsuario" => $idUsuario,
                 "Usuario" => $usuario,
                 "Nombre" => $nombre,
-                "Contrasena"=> $contrasena_encriptada,
+                "Contrasena" => $contrasena_encriptada,
                 "Rol_idRol" => $rol,
-               
+
             );
 
             $tabla = "usuario";
@@ -154,10 +168,10 @@ class ctrUsuarios
     }
 
 
-    static public function ctrEliminarUsuario($id){
-        $tabla="usuario";
-        $respuesta=mdlUsuarios::mdlEliminarUsuario($tabla, $id);
+    static public function ctrEliminarUsuario($id)
+    {
+        $tabla = "usuario";
+        $respuesta = mdlUsuarios::mdlEliminarUsuario($tabla, $id);
         return $respuesta;
     }
-
 }

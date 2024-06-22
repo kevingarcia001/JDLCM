@@ -11,7 +11,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="text-uppercase" style="font-weight: bold;" >USUARIOS</h1>
+          <h1 class="text-uppercase" style="font-weight: bold;">USUARIOS</h1>
         </div>
 
       </div>
@@ -52,7 +52,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                       <td><?php echo ($value["Nombre"])  ?> </td>
                       <td> <?php echo ($rol["Rol"])  ?> </td>
                       <td class="text-center table-actions ">
-                        <a class="btnVerUsuario mr-2" data-toggle="modal" data-target="#modal-view-usuarios" idUsuario="1" style="border: none">
+                        <a class="btnVerUsuario mr-2" data-toggle="modal" data-target="#modal-view-usuarios" idUsuario=" <?php echo ($value["idUsuario"])  ?> " style="border: none">
                           <i class="fa fa-eye text-lg text-primary"></i>
                         </a>
                         <a class="btneditarUsuario mr-2" data-toggle="modal" data-target="#modal-edit-usarios" idUsuario="<?php echo ($value["idUsuario"])  ?>" style="border: none">
@@ -77,6 +77,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
     </div>
   </section>
 
+
 </div>
 
 
@@ -92,20 +93,21 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
       <div class="modal-body">
         <form action="" method="post" enctype="multipart/form-data" id="quickForm">
           <div class="card-body">
-
             <div class="form-group">
               <label for="nusuario" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
               <input type="text" name="nusuario" class="form-control text-uppercase" id="nusuario" placeholder="Correo Electrónico">
+              <div class="invalid-feedback" id="error-nusuario"></div>
             </div>
             <div class="form-group">
               <label for="nombre_usuario" class="text-uppercase"><i class="fas fa-id-card"></i> Nombre</label>
               <input type="text" name="nombre_usuario" class="form-control text-uppercase" id="nombre_usuario" placeholder="Nombre">
+              <div class="invalid-feedback" id="error-nombre_usuario"></div>
             </div>
             <div class="form-group">
-              <label for="password_usurio" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
-              <input type="password" name="password_usurio" class="form-control  " id="password_usurio" placeholder="Contraseña">
+              <label for="password_usuario" class="text-uppercase"><i class="fas fa-lock text-uppercase"></i> Contraseña</label>
+              <input type="password" name="password_usuario" class="form-control" id="password_usuario" placeholder="Contraseña">
+              <div class="invalid-feedback" id="error-password_usuario"></div>
             </div>
-
             <div class="form-group">
               <label for="rol_usuario" class="text-uppercase"><i class="fas fa-user-tag"></i> Rol</label>
               <select class="form-control text-uppercase" name="rol_usuario" id="rol_usuario">
@@ -119,25 +121,23 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                 }
                 ?>
               </select>
+              <div class="invalid-feedback" id="error-rol_usuario"></div>
             </div>
-
           </div>
           <div class="text-right">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
           </div>
         </form>
       </div>
-
       <?php
-      $guardarUsuarios = new ctrUsuarios();
-      $guardarUsuarios->ctrGuardarUsuarios();
-      ?>
 
+      $guardarUsuario = new ctrUsuarios();
+      $guardarUsuario->ctrGuardarUsuarios();
+      ?>
     </div>
   </div>
 </div>
-
 
 <!-- Editar Usuarios -->
 <div class="modal fade" id="modal-edit-usarios">
@@ -212,32 +212,32 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
       <div class="modal-body">
         <form id="form-view-usuario">
           <div class="row">
-            <input type="hidden" name="idUsuarioV" id="idUsuarioV">
+            <input type="hidden" name="idUsuarioE" id="idUsuarioE">
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="nusuarioV"><i class="fas fa-user"></i> Usuario</label>
+                <label for="nusuarioV" class="text-uppercase"><i class="fas fa-user"></i> Usuario</label>
                 <p id="nusuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="nombre_usuarioV"><i class="fas fa-user-tag"></i> Nombre</label>
-                <p id="nombre_usuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+                <label for="nombre_usuarioV" class="text-uppercase"><i class="fas fa-user-tag "></i> Nombre</label>
+                <p id="nombre_usuarioV" class=" form-control-plaintext border rounded bg-light p-2 text-uppercase"></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="password_usurioV"><i class="fas fa-key"></i> Contraseña</label>
-                <p id="password_usurioV" class="form-control-plaintext border rounded bg-light p-2"></p>
+                <label for="password_usurioV" class="text-uppercase"><i class="fas fa-key"></i> Contraseña</label>
+                <p type="password" id="password_usurioV" class="form-control-plaintext border rounded bg-light p-2"></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <label for="rol_usuarioV"><i class="fas fa-user-shield"></i> Rol</label>
+                <label for="rol_usuarioV" class="text-uppercase"><i class="fas fa-user-shield"></i> Rol</label>
                 <p id="rol_usuarioV" class="form-control-plaintext border rounded bg-light p-2"></p>
               </div>
             </div>

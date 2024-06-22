@@ -75,11 +75,11 @@ if (isset($_SESSION['rol'])) {
                     </li>
                 <?php endif; ?>
 
-                <?php if (in_array('infotTutor', $permisos)) : ?>
+                <?php if (in_array('asignaturas', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="index.php?pagina=infotTutor" class="nav-link">
+                        <a href="index.php?pagina=asignaturas" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                            <p>Información Tutor</p>
+                            <p>Asignaturas</p>
                         </a>
                     </li>
                 <?php endif; ?>

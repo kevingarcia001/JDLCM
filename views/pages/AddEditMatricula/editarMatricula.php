@@ -45,11 +45,12 @@
                 </ul>
 
                 <!-- Contenido de las pestañas -->
-                <form action="ruta_para_editar.php" method="post" enctype="multipart/form-data" class="mt-3">
+                <form action="" method="post" enctype="multipart/form-data" class="mt-3" id="form-edit-matriucula">
                     <div class="tab-content" id="editarMatriculaTabContent">
                         <!-- Pestaña 1 - Datos Alumno -->
                         <div class="tab-pane fade show active" id="editar-tab1" role="tabpanel" aria-labelledby="editar-tab1-tab">
                             <div class="row">
+                                <input type="hidden" name="matriculaE" id="matriculaE" >
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="edit-pnombre" class="text-uppercase"><i class="fas fa-user"></i> Primer Nombre</label>

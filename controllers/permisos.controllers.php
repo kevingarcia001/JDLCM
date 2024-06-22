@@ -4,7 +4,7 @@ class PermisoController {
     public static function obtenerPermisosPorRol($rol) {
         switch ($rol) {
             case 1: // Admin
-                return array('usuarios', 'roles', 'matricula', 'alumnos', 'infoAlumno', 'infotTutor', 'salir');
+                return array('usuarios', 'roles', 'matricula', 'alumnos', 'infoAlumno', 'asignaturas', 'salir');
                 break;
             case 2: // Director
                 return array('matricula', 'alumnos', 'infoAlumno', 'infotTutor', 'hojamatricula', 'salir');

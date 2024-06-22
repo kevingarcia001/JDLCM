@@ -168,4 +168,48 @@ class mdlMatricula
             $stmt = null;
         }
     }
+
+
+    public static function obtenerMatriculaPorId($idMatricula) {
+        $stmt = Conexion::conectar()->prepare("
+            SELECT 
+                m.idMatricula,
+                m.CodMatricula,
+                m.Fecha,
+                a.idAlumno,
+                a.PNombre as alumnoPNombre,
+                a.SNombre as alumnoSNombre,
+                a.PApellido as alumnoPApellido,
+                a.SApellido as alumnoSApellido,
+                a.Direccion as alumnoDireccion,
+                a.Fecha_Nacimiento as alumnoFechaNacimiento,
+                a.Telefono as alumnoTelefono,
+                t.idTutor,
+                t.PNombre as tutorPNombre,
+                t.SNombre as tutorSNombre,
+                t.PApellido as tutorPApellido,
+                t.SApellido as tutorSApellido,
+                t.Direccion as tutorDireccion,
+                t.Cedula as tutorCedula,
+                t.Telefono as tutorTelefono,
+                ta.Turno,
+                aa.Anio_Academico,
+                g.Grado,
+                s.NSecc as seccion
+            FROM matricula m
+            JOIN alumnos a ON m.Alumnos_idAlumno = a.idAlumno
+            JOIN tutor t ON a.Tutor_idTutor = t.idTutor
+            JOIN turno ta ON m.Turno_idTurno = ta.idTurno
+            JOIN anio_academico aa ON m.Anio_Academico_idAnio_Academico = aa.idAnio_Academico
+            JOIN seccion s ON m.GradoSeccion_idGradoSeccion = s.idSeccion
+            JOIN grado g ON s.Grado_idGrado = g.idGrado
+            WHERE m.idMatricula = :idMatricula
+        ");
+        $stmt->bindParam(":idMatricula", $idMatricula, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }
+
+
+

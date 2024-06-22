@@ -39,6 +39,10 @@ include_once './models/parentesco.model.php';
 // permisos 
 include_once './controllers/permisos.controllers.php';
 
+// Asignaturas
+include_once './controllers/asignaturas.controllers.php';
+include_once './models/asignaturas.models.php';
+
 $plantilla = new controllerDashboard();
 $plantilla->Dashboard();
 
