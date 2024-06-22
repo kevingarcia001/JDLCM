@@ -22,6 +22,14 @@ class mdlAlumnos{
         return $stmt->fetch();
     }
 
+    // reporte
+    static public function mdlreporte($id_alumno) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos WHERE idAlumno = :id");
+        $stmt->bindParam(':id', $id_alumno, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // CrearAlumno
     static public function mdlCrearAlumno($tabla, $datos){
         try {

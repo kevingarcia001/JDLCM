@@ -177,75 +177,71 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $("#quickForm").submit(function(event) {
-        var nusuario = $("#nusuario").val().trim();
-        var nombre_usuario = $("#nombre_usuario").val().trim();
-        var password_usuario = $("#password_usuario").val().trim();
-        var rol_usuario = $("#rol_usuario").val();
+    // Validación del formulario de edición
+    $("#quickFormE").submit(function(event) {
+        var nusuario = $("#nusuarioE").val().trim();
+        var nombre_usuario = $("#nombre_usuarioE").val().trim();
+        var password_usuario = $("#password_usuarioE").val().trim();
+        var rol_usuario = $("#rol_usuarioE").val();
 
         // Validación del campo nusuario (correo electrónico)
         if (nusuario === "") {
             event.preventDefault();
-            $("#error-nusuario").html("Por favor, ingresa el correo electrónico.");
-            $("#nusuario").addClass("is-invalid");
+            $("#error-nusuarioE").html("Por favor, ingresa el correo electrónico.");
+            $("#nusuarioE").addClass("is-invalid");
         } else {
-            $("#error-nusuario").html("");
-            $("#nusuario").removeClass("is-invalid");
+            $("#error-nusuarioE").html("");
+            $("#nusuarioE").removeClass("is-invalid");
         }
 
         // Validación del campo nombre_usuario
         if (nombre_usuario === "") {
             event.preventDefault();
-            $("#error-nombre_usuario").html("Por favor, ingresa el nombre.");
-            $("#nombre_usuario").addClass("is-invalid");
+            $("#error-nombre_usuarioE").html("Por favor, ingresa el nombre.");
+            $("#nombre_usuarioE").addClass("is-invalid");
         } else {
-            $("#error-nombre_usuario").html("");
-            $("#nombre_usuario").removeClass("is-invalid");
-        }
-
-        // Validación del campo password_usuario
-        if (password_usuario === "") {
-            event.preventDefault();
-            $("#error-password_usuario").html("Por favor, ingresa la contraseña.");
-            $("#password_usuario").addClass("is-invalid");
-        } else {
-            $("#error-password_usuario").html("");
-            $("#password_usuario").removeClass("is-invalid");
+            $("#error-nombre_usuarioE").html("");
+            $("#nombre_usuarioE").removeClass("is-invalid");
         }
 
         // Validación del campo rol_usuario
         if (rol_usuario === "") {
             event.preventDefault();
-            $("#error-rol_usuario").html("Por favor, selecciona un rol.");
-            $("#rol_usuario").addClass("is-invalid");
+            $("#error-rol_usuarioE").html("Por favor, selecciona un rol.");
+            $("#rol_usuarioE").addClass("is-invalid");
         } else {
-            $("#error-rol_usuario").html("");
-            $("#rol_usuario").removeClass("is-invalid");
+            $("#error-rol_usuarioE").html("");
+            $("#rol_usuarioE").removeClass("is-invalid");
         }
     });
 
+    // Limpiar errores al abrir el modal
+    $('#modal-edit-usuarios').on('show.bs.modal', function(e) {
+        $("#nusuarioE").removeClass("is-invalid");
+        $("#error-nusuarioE").html("");
+        $("#nombre_usuarioE").removeClass("is-invalid");
+        $("#error-nombre_usuarioE").html("");
+        $("#rol_usuarioE").removeClass("is-invalid");
+        $("#error-rol_usuarioE").html("");
+    });
+
     // Evitar que el modal se cierre si hay errores
-    $('#modal-usuarios').on('hide.bs.modal', function(e) {
-        if ($("#nusuario").hasClass("is-invalid") ||
-            $("#nombre_usuario").hasClass("is-invalid") ||
-            $("#password_usuario").hasClass("is-invalid") ||
-            $("#rol_usuario").hasClass("is-invalid")) {
+    $('#modal-edit-usuarios').on('hide.bs.modal', function(e) {
+        if ($("#nusuarioE").hasClass("is-invalid") ||
+            $("#nombre_usuarioE").hasClass("is-invalid") ||
+            $("#rol_usuarioE").hasClass("is-invalid")) {
             e.preventDefault(); // Evitar que se cierre el modal
         }
     });
 
     // Limpiar errores al cerrar el modal
-    $('#modal-usuarios').on('click', '[data-dismiss="modal"]', function(e) {
-        $("#nusuario").removeClass("is-invalid");
-        $("#error-nusuario").html("");
-        $("#nombre_usuario").removeClass("is-invalid");
-        $("#error-nombre_usuario").html("");
-        $("#password_usuario").removeClass("is-invalid");
-        $("#error-password_usuario").html("");
-        $("#rol_usuario").removeClass("is-invalid");
-        $("#error-rol_usuario").html("");
+    $('#modal-edit-usuarios').on('click', '[data-dismiss="modal"]', function(e) {
+        $("#nusuarioE").removeClass("is-invalid");
+        $("#error-nusuarioE").html("");
+        $("#nombre_usuarioE").removeClass("is-invalid");
+        $("#error-nombre_usuarioE").html("");
+        $("#rol_usuarioE").removeClass("is-invalid");
+        $("#error-rol_usuarioE").html("");
     });
 });
-
-
   

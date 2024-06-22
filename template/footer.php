@@ -21,9 +21,9 @@
 <script src="./views/js/inputsValidaciones.js"></script>
 
 <!-- Validaciones -->
-<!-- 
+
 <script src="./assets/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="./assets/plugins/jquery-validation/additional-methods.min.js"></script> -->
+<script src="./assets/plugins/jquery-validation/additional-methods.min.js"></script>
 
 <!-- Data tables -->
 <script src="./assets/plugins/datatables/jquery.dataTables.min.js"></script>

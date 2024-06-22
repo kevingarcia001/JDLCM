@@ -1,5 +1,5 @@
 <?php
 
-include_once "./ajax/perfil.alumno.ajax.php"
+include_once "./controllers/alumno.controllers.php"
 
 ?>

@@ -8,8 +8,6 @@ class ctrAsignaturas{
         return $respuesta;
     }
 
-
-
     static public function ctrCrearAsignatura() {
         if(isset($_POST["nom-asignatura"]) && !empty($_POST["nom-asignatura"])){
             $asignatura = $_POST["nom-asignatura"];

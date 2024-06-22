@@ -78,6 +78,27 @@ $(document).ready(function() {
 
 
 
+$(document).ready(function() {
+    $('.btnPdfMatricula').click(function(e) {
+        e.preventDefault();
+        var idAlumno = $(this).data('id');
+
+        // Envío de solicitud AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'controllers/alumno.controllers.php', // Ruta correcta al controlador
+            data: { idAlumno: idAlumno },
+            success: function(response) {
+                // Opcional: mostrar algún mensaje de éxito o redirigir
+                console.log('PDF generado correctamente');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al generar PDF: ' + error);
+            }
+        });
+    });
+});
+
 
 
                   
