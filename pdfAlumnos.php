@@ -45,14 +45,20 @@ class MYPDF extends TCPDF {
         $this->SetY(40);
 
         // Subtitulo
-        $this->SetFont('helvetica', 'B', 20);
+        $this->SetFont('helvetica', 'B', 12);
+        $this->Cell(0, 10, 'CENTRO ESCOLAR PUBLICO JOSÉ DE LA CRUZ MENA', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    
+        $this->SetY(50);
+
+        // Subtitulo
+        $this->SetFont('helvetica', 'B', 12);
         $this->Cell(0, 10, 'Reporte Estudiantil', 0, false, 'C', 0, '', 0, false, 'M', 'M');
     
     }
 
      // Body
     public function body() {
-        $this->SetY(50);
+        $this->SetY(60);
         $this->SetFont('helvetica', '', 10);
         
 
@@ -72,7 +78,7 @@ class MYPDF extends TCPDF {
      
         // Derecha Coplumna
      
-        $this->SetY(50);
+        $this->SetY(60);
         $this->SetX(110);
         $this->Cell(10, 10, 'Sexo:', 0, 0);
         $this->Cell(50, 10, '2024', 0, 1);
