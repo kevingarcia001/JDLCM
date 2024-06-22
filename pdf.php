@@ -2,6 +2,10 @@
 
 // Include the main TCPDF library (search for installation path).
 require_once('tcpdf/tcpdf.php');
+// require_once('models/conexiondb.php');
+
+// $getalumnos = new mdlAlumnos();
+// // $datos = $getalumnos->mdlMostrarAlumno();
 
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
@@ -9,17 +13,21 @@ class MYPDF extends TCPDF {
     // Page header
     public function Header() {
         // Set background color
-        $this->SetFillColor(220, 220, 220); // Color RGB (por ejemplo, gris claro)
+        $this->SetFillColor(20, 23, 61); // Color RGB (por ejemplo, gris claro)
         $this->Rect(0, 0, $this->getPageWidth(), 20, 'F'); // Rectángulo para el fondo del encabezado
 
         // Logo
+
         $image_file = K_PATH_IMAGES.'icono.png';
         $this->Image($image_file, 10, 5, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-
+        
         // Set font
-        $this->SetFont('helvetica', 'B', 20);
+        $this->SetFont('helvetica', 'B', 18);
+         // color al titulo
+         $this->SetTextColor(255, 255, 255);
+         $this->SetY(10); // Ajusta la posición vertical del título
         // Title
-        $this->Cell(0, 15, 'COLEGIO DE LA CRUZ MENA', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 15, 'COLEGIO JOSÉ DE LA CRUZ MENA', 0, false, 'C', 0, '', 0, false, 'M', 'M');
     }
 
     // Page footer
