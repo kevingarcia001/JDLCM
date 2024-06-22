@@ -21,7 +21,7 @@ if (isset($_SESSION['rol'])) {
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 text-center">
             <div class="image">
-                <img src="../assets/dist/img/icono.png" style="width: 180px; height: 200px;" alt="User Image">
+                <img src="../assets/dist/img/banner.png" style="width: 180px; height: 200px;" alt="User Image">
             </div>
             <div class="user-info text-white">
                 <p class="brand-text text-sm text-uppercase fw-bold">sistema de matrícula jdlcm</p>

@@ -52,6 +52,9 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                       <td><?php echo ($value["Telefono"])  ?> </td>
                       <td> <?php echo ($tutor["PNombre"])  ?> </td>
                       <td class="text-center">
+                        <a href="pdfAlumnos.php" target="_blank" class="btnPdfMatricula mr-2" style="border: none" >
+                          <i class="fas fa-file-pdf text-xl text-danger"></i>
+                           </a>
                         <button type="button" class="btn btn-primary btn-sm btn-editarAlumno" data-toggle="modal" data-target="#modal-edit" idAlumno="<?php echo ($value["idAlumno"])  ?>">
                           <i class="fa fa-edit"></i>
                         </button>
@@ -81,7 +84,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Agregar Usuarios</h4>
+        <h4 class="modal-title">Agregar Alumno</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
