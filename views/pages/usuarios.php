@@ -188,6 +188,10 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
                     </div>
                 </form>
             </div>
+            <?php
+      $editarUsuarios = new ctrUsuarios();
+      $editarUsuarios->ctrEditarUsuario();
+      ?>
         </div>
     </div>
 </div>
@@ -195,10 +199,7 @@ $usuarios = ctrUsuarios::ctrListarUsuarios();
 
 
 
-      <?php
-      $editarUsuarios = new ctrUsuarios();
-      $editarUsuarios->ctrEditarUsuario();
-      ?>
+     
 <!-- VER -->
 <div class="modal fade" id="modal-view-usuarios">
   <div class="modal-dialog modal-lg">
