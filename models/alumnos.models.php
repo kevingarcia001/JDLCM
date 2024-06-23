@@ -157,16 +157,5 @@ class mdlAlumnos{
             $stmt = null;
         }
     }
-    static public function mdlMostrarAlumnoPorIdDesdeVista($idAlumno) {
-        try {
-            $stmt = Conexion::conectar()->prepare("CALL vista_alumnos(:idAlumno)");
-            $stmt->bindParam(":idAlumno", $idAlumno, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return null;
-        }
-    }
     
 }
