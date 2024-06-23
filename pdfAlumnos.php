@@ -5,9 +5,17 @@ require_once('tcpdf/tcpdf.php');
 require('models/conexiondb.php');
 require('models/alumnos.models.php');
 
+// Verificar si se ha proporcionado el ID del estudiante
+if (isset($_GET['id'])) {
+    $idAlumno = $_GET['id'];
+} else {
+    // Manejar el caso donde no se proporciona el ID del estudiante
+    die('Error: No se proporcionó el ID del estudiante.');
+}
 // Obtener los datos del estudiante usando el modelo
 $modelo = new mdlAlumnos();
-$datosEstudiante = $modelo->mdlGetStudentInfoById(8);
+$datosEstudiante = $modelo->mdlGetStudentInfoById($idAlumno);
+
 
 // var_dump($datosEstudiante);
 
