@@ -42,7 +42,7 @@ class MYPDF extends TCPDF {
         
 
         // Set font
-        $this->SetFont('helvetica', 'A', 12);
+        $this->SetFont('helvetica', 'I', 12);
         // Color al titulo
         $this->SetTextColor(0, 0, 0);
         $this->SetY(14); // Ajusta la posición vertical del título
@@ -72,7 +72,7 @@ class MYPDF extends TCPDF {
 
         // Subtitulo
         $this->SetFont('helvetica', 'B', 12);
-        $this->Cell(0, 10, 'Reporte de Matriculados', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Reporte de Estudiantil', 0, false, 'C', 0, '', 0, false, 'M', 'M');
     
     }
 
@@ -122,13 +122,13 @@ class MYPDF extends TCPDF {
     $this->Ln(10); // Add some space before the table
 
     $this->SetFont('helvetica', 'B', 10);
-
+    $this->SetFillColor(238, 238, 238); 
     // Headers
-    $this->Cell(20, 10, 'TURNO', 1, 0, 'C');
-    $this->Cell(40, 10, 'GRADO', 1, 0, 'C');
-    $this->Cell(40, 10, 'SECCIÓN', 1, 0, 'C');
-    $this->Cell(40, 10, 'ASIGNATURAS', 1, 0, 'C');
-    $this->Cell(40, 10, 'NOTAS', 1, 0, 'C');
+    $this->Cell(20, 10, 'TURNO', 1, 0, 'C', true);
+    $this->Cell(40, 10, 'GRADO', 1, 0, 'C', true);
+    $this->Cell(40, 10, 'SECCIÓN', 1, 0, 'C', true);
+    $this->Cell(40, 10, 'ASIGNATURAS', 1, 0, 'C', true);
+    $this->Cell(40, 10, 'NOTAS', 1, 0, 'C', true);
     $this->Ln();
 
     $this->SetFont('helvetica', '', 10);
