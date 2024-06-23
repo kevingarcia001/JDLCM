@@ -42,14 +42,7 @@ if (isset($_SESSION['rol'])) {
                     </li>
                 <?php endif; ?>
 
-                <?php if (in_array('roles', $permisos)) : ?>
-                    <li class="nav-item">
-                        <a href="roles" class="nav-link">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>Roles</p>
-                        </a>
-                    </li>
-                <?php endif; ?>
+        
 
                 <?php if (in_array('matricula', $permisos)) : ?>
                     <li class="nav-item">
@@ -69,11 +62,11 @@ if (isset($_SESSION['rol'])) {
                     </li>
                 <?php endif; ?>
 
-                <?php if (in_array('infoAlumno', $permisos)) : ?>
+                <?php if (in_array('notas', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="infoAlumno" class="nav-link">
+                        <a href="notas" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
-                            <p>Información Alumno</p>
+                            <p>Notas</p>
                         </a>
                     </li>
                 <?php endif; ?>

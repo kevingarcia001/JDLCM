@@ -1,16 +1,10 @@
 <?php
 
-class ctrAsignaturas{
+class ctrNotas{
     // controlador listar
-    static public function ctrlistarAsignaturas(){
-        $tabla="asignatura";
-        $respuesta=mdlAlumnos::mdlListarAlumnos($tabla); 
-        return $respuesta;
-    }
-
-    static public function ctrMostrarAlsignatura($item, $valor){
-        $tabla="asignatura";
-        $respuesta = mdlAsiganturas::mdlMostrarAsignatura($tabla,$item, $valor);
+    static public function ctrlistarNotas(){
+        $tabla="nota";
+        $respuesta=mdlNotas::mdlListarNotas($tabla); 
         return $respuesta;
     }
 

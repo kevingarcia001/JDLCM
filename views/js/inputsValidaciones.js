@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#quickForm').submit(function(event) {
+    $('#quickForA').submit(function(event) {
         var nombreAsignatura = $('#nom-asignatura').val().trim();
 
         if (nombreAsignatura === '') {

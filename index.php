@@ -43,6 +43,9 @@ include_once './controllers/permisos.controllers.php';
 include_once './controllers/asignaturas.controllers.php';
 include_once './models/asignaturas.models.php';
 
+include_once './controllers/notas.controllers.php';
+include_once './models/notas.models.php';
+
 $plantilla = new controllerDashboard();
 $plantilla->Dashboard();
 

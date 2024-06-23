@@ -28,7 +28,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                   <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-lg">
                     AGREGAR ALUMNOS
                   </button>
-                  <tr>
+                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D" >
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Fecha Nacimiento</th>
@@ -37,7 +37,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                     <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-bold text-uppercase"  >
                   <?php   ?>
                   <?php
                   foreach ($alumnos as $key => $value) {
@@ -52,9 +52,9 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                       <td><?php echo ($value["Telefono"])  ?> </td>
                       <td> <?php echo ($tutor["PNombre"])  ?> </td>
                       <td class="text-center">
-                        <a href="#" class="btnPdfMatricula mr-2" style="border: none" data-id="<?php echo $value['idAlumno']; ?>">
+                        <!-- <a href="#" class="btnPdfMatricula mr-2" style="border: none" data-id="<?php echo $value['idAlumno']; ?>">
                           <i class="fas fa-file-pdf text-xl text-danger"></i>
-                        </a>
+                        </a> -->
                         <button type="button" class="btn btn-primary btn-sm btn-editarAlumno" data-toggle="modal" data-target="#modal-edit" idAlumno="<?php echo ($value["idAlumno"])  ?>">
                           <i class="fa fa-edit"></i>
                         </button>

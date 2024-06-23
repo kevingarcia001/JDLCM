@@ -129,7 +129,7 @@ INSERT INTO `asignatura` (`idAsignatura`, `Asignatura`) VALUES
 (4, 'Historia'),
 (5, 'Geografía'),
 (6, 'Educación Física'),
-(7, 'Física'),
+(7, 'Física'),v 
 (8, 'Química');
 
 -- --------------------------------------------------------

@@ -1,5 +1,5 @@
 <?php
-$asignaturas = ctrAsignaturas::ctrlistarAsignaturas();
+$notas = ctrNotas::ctrlistarNotas();
 ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,7 +7,7 @@ $asignaturas = ctrAsignaturas::ctrlistarAsignaturas();
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="text-uppercase" style="font-weight: bold;">Agregar Asignaturas</h1>
+                    <h1 class="text-uppercase" style="font-weight: bold;">Notas</h1>
                 </div>
 
             </div>
@@ -27,24 +27,37 @@ $asignaturas = ctrAsignaturas::ctrlistarAsignaturas();
                                 <thead>
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-sm text-white text-uppercase " data-toggle="modal" data-target="#modal-asignaturas" style="font-weight: bold; background-color: #388E3C;">
-                                            <span class="fw-bold text-uppercase ">Agregar Asignaturas</span>
+                                            <span class="fw-bold text-uppercase ">Agregar Notas</span>
                                         </button>
                                     </div>
                                     <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                                         <th>Id</th>
-                                        <th>NOMBRE ASIGNATURA</th>
-                                        <th style="width: 2%">Acciones</th>
+                                        <th>ASIGNATURA</th>
+                                        <th>NOTAS</th>
+                                        <th>MATRICULA</th>
+
+                                        <th style="width: 5%">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-bold text-uppercase" id="resultado-matricula">
                                     <?php   ?>
 
                                     <?php
-                                    foreach ($asignaturas as $key => $value) {
+                                    foreach ($notas as $key => $value) {
+
+                                        $item = "idAsignatura";
+                                        $valor = $value["Asignatura_idAsignatura"];
+                                        $asignatura = ctrAsignaturas::ctrMostrarAlsignatura($item, $valor);
+
+                                        $item = "idMatricula";
+                                        $valor = $value["Matricula_idMatricula"];
+                                        $matricula = ctrMatricula::ctrMostrarMatricula($item, $valor);
                                     ?>
                                         <tr>
                                             <td> <?php echo ($key + 1)  ?></td>
-                                            <td><?php echo ($value["Asignatura"])  ?> </td>
+                                            <td><?php echo ($asignatura["Asignatura"])  ?> </td>
+                                            <td><?php echo ($value["Nota"])  ?> </td>
+                                            <td><?php echo ($matricula["CodMatricula"])  ?> </td>
 
                                             <td>
 
@@ -74,23 +87,33 @@ $asignaturas = ctrAsignaturas::ctrlistarAsignaturas();
 </div>
 
 
-<div class="modal fade" id="modal-asignaturas">
+<div class="modal fade" id="modal-notas">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background-color:#14173D">
-                <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Agregar Asignatura</h4>
+                <h4 class="modal-title text-white text-uppercase" style="font-weight: bold">Agregar Notas</h4>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="font-weight: bold">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div> 
+            </div>
             <div class="modal-body">
-                <form action="" method="post" enctype="multipart/form-data" id="#quickForA">
+                <form action="" method="post" enctype="multipart/form-data" id="#quickForm">
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="nom-asignatura" class="text-uppercase"> Nombre Asignatura</label>
-                            <input type="text" name="nom-asignatura" class="form-control text-uppercase" id="nom-asignatura" placeholder="Nombre Asignatura" require>
-                            <div class="invalid-feedback" id="error-nom-asignatura"></div>
+                            <label for="asignatura-mat" class="text-uppercase"> Matematica</label>
+                            <input type="num" name="asignatura-mat" class="form-control text-uppercase" id="asignatura-mat" placeholder="Matematica" require>
+            
+                        </div>
+                        <div class="form-group">
+                            <label for="asignatura-lengua" class="text-uppercase"> Lengua</label>
+                            <input type="num" name="asignatura-mat" class="form-control text-uppercase" id="asignatura-mat" placeholder="Lengua" require>
+            
+                        </div>
+                        <div class="form-group">
+                            <label for="asignatura-quimica" class="text-uppercase"> Quimica</label>
+                            <input type="num" name="asignatura-quimica" class="form-control text-uppercase" id="asignatura-quimica" placeholder="Quimica" require>
+            
                         </div>
                     </div>
                     <div class="text-right">

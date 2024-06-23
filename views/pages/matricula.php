@@ -71,12 +71,12 @@ $matricula = ctrMatricula::ctrListarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
+                          <!-- <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
                           <i class="fas fa-file-pdf text-lg text-danger"></i>
-                           </a>
-                          <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
+                           </a> -->
+                          <!-- <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
                             <i class="fa fa-eye text-lg text-primary"></i>
-                          </a>
+                          </a> -->
                           <a class="btnEditarmatricula mr-2" data-toggle="modal" data-target="#modal-editar-matricula" idMatricula="<?php echo ($value["idMatricula"])?>" style="border: none"  >
                             <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </a>
@@ -86,15 +86,6 @@ $matricula = ctrMatricula::ctrListarMatricula();
                           </a>
                         </div>
 
-                       
-                        <!-- <div class="btn-group">
-                          <button class="btn btn-secondary btn-sm btn-ver-perfil" data-profile="alumno">
-                            <i class="fa fa-eye"></i> 
-                          </button>
-                          <button type="button" class="btn btn-primary btn-sm btn-editar" data-toggle="modal" data-target="#modal-editar-usuarios" idUsuario=" <?php echo ($roles["id"])  ?>">
-                            <i class="fas fa-pencil-alt text-white"></i>
-                          </button>
-                        </div> -->
                       </td>
                     </tr>
                   <?php
@@ -414,6 +405,10 @@ $matricula = ctrMatricula::ctrListarMatricula();
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-t_telefono" class="text-uppercase"><i class="fas fa-phone"></i> Teléfono</label>
+                                        <input type="text" name="edit-t_telefono" class="form-control text-uppercase" id="edit-t_telefono" placeholder="Teléfono">
+                                    </div>
                                         <div class="form-group">
                                             <label for="edit-anio_academico" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Año Académico</label>
                                             <select class="form-control text-uppercase" name="edit-anio_academico" id="edit-anio_academico">

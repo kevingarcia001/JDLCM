@@ -132,12 +132,6 @@
                                             <div class="invalid-feedback" id="error-tprimerapellido"></div>
 
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="t_fecha" class="text-uppercase"> <i class="fas fa-calendar-alt"></i> Fecha Nacimiento</label>
-                                            <input type="date" name="t_fecha" class="form-control text-uppercase" id="t_fecha" placeholder="Fecha Nacimiento">
-                                            <div class="invalid-feedback" id="error-tfecha"></div>
-
-                                        </div> -->
                                         <div class="form-group">
                                             <label for="t_cedula" class="text-uppercase"><i class="fas fa-id-card"></i> Cédula</label>
                                             <input type="text" name="t_cedula" class="form-control text-uppercase" id="t_cedula" placeholder="Cédula">
@@ -211,6 +205,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="CodMatricula" class="text-uppercase"><i class="fas fa-phone"></i> Código Matrícula</label>
+                                        <input type="text" name="CodMatricula" class="form-control text-uppercase" id="CodMatricula" placeholder="Código Matrícula">
+                                    </div>
                                         <div class="form-group">
                                             <label for="anio_academico" class="text-uppercase"><i class="fas fa-calendar-alt"></i> Año Académico</label>
                                             <select class="form-control text-uppercase" name="anio_academico" id="anio_academico">
@@ -283,9 +281,8 @@
                         </div>
                     </div>
                     <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Guardar
-                        </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
                     </div>
                     <?php
                    ctrMatricula::ctrCrearMatricula();

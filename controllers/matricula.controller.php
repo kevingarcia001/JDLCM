@@ -18,27 +18,17 @@ class ctrMatricula
     }
 
 
-    static public function ctrcargamatricula($idMatricula){
-        $tabla = "matricula";
-        $respuesta = mdlMatricula::cargarDatosMatricula($idMatricula, $tabla);
-        return $respuesta;
-    }
+    // static public function ctrcargamatricula($idMatricula){
+    //     $tabla = "matricula";
+    //     $respuesta = mdlMatricula::cargarDatosMatricula($idMatricula, $tabla);
+    //     return $respuesta;
+    // }
 
 
 
     static public function ctrCrearMatricula() {
         if (
-            isset($_POST["pnombre"]) && !empty($_POST["pnombre"]) && 
-            !empty($_POST["snombre"]) && !empty($_POST["papellido"]) && 
-            !empty($_POST["sapellido"]) && !empty($_POST["direccion"]) && 
-            !empty($_POST["telefono"]) && !empty($_POST["sexo"]) && 
-            !empty($_POST["t_pnombre"]) && !empty($_POST["t_snombre"]) && 
-            !empty($_POST["t_papellido"]) && !empty($_POST["t_direccion"]) && 
-            !empty($_POST["t_cedula"]) && !empty($_POST["t_telefono"]) && 
-            !empty($_POST["t_sexo"]) && !empty($_POST["t_parentesco"]) && 
-            !empty($_POST["anio_academico"]) && !empty($_POST["grado"]) && 
-            !empty($_POST["turno"])
-        ) {
+            isset($_POST["pnombre"])) {
             // Datos del alumno
             $datosAlumno = array(
                 "PNombre" => htmlspecialchars($_POST["pnombre"]),
@@ -66,7 +56,7 @@ class ctrMatricula
     
             // Datos de la matrícula
             $datosMatricula = array(
-                "CodMatricula" => null, 
+                "CodMatricula" =>htmlspecialchars($_POST["CodMatricula"]), 
                 "Anio_Academico_idAnio_Academico" => htmlspecialchars($_POST["anio_academico"]),
                 "GradoSeccion_idGradoSeccion" => htmlspecialchars($_POST["grado"]),
                 "Turno_idTurno" => htmlspecialchars($_POST["turno"]),
@@ -96,7 +86,7 @@ class ctrMatricula
                         Swal.fire({
                             icon: "error",
                             title: "Error",
-                            text: "Error al guardar Matrícula: ' . $respuesta . '",
+                            text: "Error al guardar Matrícula: No se permite enviar campos vacios",
                             showConfirmButton: false,
                             timer: 3000
                         });
