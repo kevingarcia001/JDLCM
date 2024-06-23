@@ -2,13 +2,33 @@
 
 // Include the main TCPDF library (search for installation path).
 require_once('tcpdf/tcpdf.php');
-// require_once('models/conexiondb.php');
+require('models/conexiondb.php');
+require('models/alumnos.models.php');
 
-// $getalumnos = new mdlAlumnos();
-// // $datos = $getalumnos->mdlMostrarAlumno();
+// Verificar si se ha proporcionado el ID del estudiante
+if (isset($_GET['id'])) {
+    $idAlumno = $_GET['id'];
+} else {
+    // Manejar el caso donde no se proporciona el ID del estudiante
+    die('Error: No se proporcionó el ID del estudiante.');
+}
+// Obtener los datos del estudiante usando el modelo
+$modelo = new mdlAlumnos();
+$datosEstudiante = $modelo->mdlGetStudentInfoById($idAlumno);
+
+
+// var_dump($datosEstudiante);
 
 // Extend the TCPDF class to create custom Header and Footer
 class MYPDF extends TCPDF {
+
+    protected $studentData;
+
+    public function __construct($studentData, $orientation = 'P', $unit = 'mm', $format = 'A4', $unicode = true, $encoding = 'UTF-8', $diskcache = false) {
+        parent::__construct($orientation, $unit, $format, $unicode, $encoding, $diskcache);
+        $this->studentData = $studentData;
+    }
+
 
     // Page header
     public function Header() {
@@ -52,7 +72,7 @@ class MYPDF extends TCPDF {
 
         // Subtitulo
         $this->SetFont('helvetica', 'B', 12);
-        $this->Cell(0, 10, 'Reporte Estudiantil', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 10, 'Reporte de Matriculados', 0, false, 'C', 0, '', 0, false, 'M', 'M');
     
     }
 
@@ -61,38 +81,40 @@ class MYPDF extends TCPDF {
         $this->SetY(60);
         $this->SetFont('helvetica', '', 10);
         
+        if (!empty($this->studentData)) {
+            $row = $this->studentData[0];
 
-        // Izquierda Coplumna
-        $this->SetX(15);
-        $this->Cell(35, 10, 'Código de Matrícula: ', 0, 0);
-        $this->Cell(50, 10, '19-01742-4', 0, 1);
+            // Datos del estudiante
+            $this->SetX(15);
+            $this->Cell(35, 10, 'Código de Matrícula: ', 0, 0);
+            $this->Cell(50, 10, $row['Código de matrícula'], 0, 1);
 
-        $this->SetX(15);
-        $this->Cell(15, 10, 'Nombre: ', 0, 0);
-        $this->Cell(40, 10, 'Angel Erian Hernandez Aleman', 0, 1);
+            $this->SetX(15);
+            $this->Cell(15, 10, 'Nombre: ', 0, 0);
+            $this->Cell(40, 10, $row['Alumno'], 0, 1);
 
-        $this->SetX(15);
-        $this->Cell(35, 10, 'Fecha de nacimiento: ', 0, 0);
-        $this->Cell(50, 10, '2010-06-02', 0, 1);
+            $this->SetX(15);
+            $this->Cell(35, 10, 'Fecha de Nacimiento: ', 0, 0);
+            $this->Cell(50, 10, $row['Fecha de nacimiento'], 0, 1);
 
-     
-        // Derecha Coplumna
-     
-        $this->SetY(60);
-        $this->SetX(110);
-        $this->Cell(10, 10, 'Sexo:', 0, 0);
-        $this->Cell(50, 10, '2024', 0, 1);
+            // columna derecha
+            $this->SetY(60);
+            $this->SetX(110);
+            $this->Cell(10, 10, 'Sexo: ', 0, 0);
+            $this->Cell(50, 10, $row['Sexo'], 0, 1);
 
-        $this->SetX(110);
-        $this->Cell(10, 10, 'Tutor: ', 0, 0);
-        $this->Cell(50, 10, 'Juan Perez', 0, 1);
+            $this->SetX(110);
+            $this->Cell(10, 10, 'Tutor: ', 0, 0);
+            $this->Cell(50, 10, $row['Tutor'], 0, 1);
 
-        $this->SetX(110);
-        $this->Cell(17, 10, 'Telefono: ', 0, 0);
-        $this->Cell(50, 10, '0000-5555', 0, 1);
-
- 
+            $this->SetX(110);
+            $this->Cell(17, 10, 'Telefono: ', 0, 0);
+            $this->Cell(50, 10, $row['Teléfono'], 0, 1);
+        }
+       
     }
+
+    
 
     // Custom table
    // Table
@@ -102,7 +124,7 @@ class MYPDF extends TCPDF {
     $this->SetFont('helvetica', 'B', 10);
 
     // Headers
-    $this->Cell(20, 10, 'AÑO', 1, 0, 'C');
+    $this->Cell(20, 10, 'TURNO', 1, 0, 'C');
     $this->Cell(40, 10, 'GRADO', 1, 0, 'C');
     $this->Cell(40, 10, 'SECCIÓN', 1, 0, 'C');
     $this->Cell(40, 10, 'ASIGNATURAS', 1, 0, 'C');
@@ -111,20 +133,14 @@ class MYPDF extends TCPDF {
 
     $this->SetFont('helvetica', '', 10);
 
-    // Example data rows
-    $data = [
-        ['2024', '4', 'A', 'Matemáticas', '95'],
-        ['2024', '4', 'A', 'Ciencias', '89'],
-        ['2024', '4', 'A', 'Historia', '92']
-    ];
 
     // Populate table rows with centered text
-    foreach ($data as $row) {
-        $this->Cell(20, 10, $row[0], 1, 0, 'C');
-        $this->Cell(40, 10, $row[1], 1, 0, 'C');
-        $this->Cell(40, 10, $row[2], 1, 0, 'C');
-        $this->Cell(40, 10, $row[3], 1, 0, 'C');
-        $this->Cell(40, 10, $row[4], 1, 0, 'C');
+    foreach ($this->studentData as $row) {
+        $this->Cell(20, 10, $row['Turno'], 1, 0, 'C');
+        $this->Cell(40, 10, $row['Grado'], 1, 0, 'C');
+        $this->Cell(40, 10, $row['Sección'], 1, 0, 'C');
+        $this->Cell(40, 10, $row['Asignatura'], 1, 0, 'C');
+        $this->Cell(40, 10, $row['Notas'], 1, 0, 'C');
         $this->Ln();
     }
 }
@@ -176,7 +192,7 @@ class MYPDF extends TCPDF {
 }
 
 // Create new PDF document
-$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF($datosEstudiante, PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // Set document information
 $pdf->SetCreator(PDF_CREATOR);

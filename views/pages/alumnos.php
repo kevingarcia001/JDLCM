@@ -8,7 +8,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>ALUMNOS</h1>
+          <h1 style="font-weight: bold;" >ALUMNOS</h1>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                   <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-lg">
                     AGREGAR ALUMNOS
                   </button>
-                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D" >
+                  <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Fecha Nacimiento</th>
@@ -37,7 +37,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                     <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody class="text-bold text-uppercase"  >
+                <tbody class="text-bold text-uppercase">
                   <?php   ?>
                   <?php
                   foreach ($alumnos as $key => $value) {
@@ -52,15 +52,15 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                       <td><?php echo ($value["Telefono"])  ?> </td>
                       <td> <?php echo ($tutor["PNombre"])  ?> </td>
                       <td class="text-center">
-                        <!-- <a href="#" class="btnPdfMatricula mr-2" style="border: none" data-id="<?php echo $value['idAlumno']; ?>">
-                          <i class="fas fa-file-pdf text-xl text-danger"></i>
-                        </a> -->
-                        <button type="button" class="btn btn-primary btn-sm btn-editarAlumno" data-toggle="modal" data-target="#modal-edit" idAlumno="<?php echo ($value["idAlumno"])  ?>">
-                          <i class="fa fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm btnEliminarAlumno" data-toggle="modal" data-target="#modal-delete" idAlumnoE="<?php echo ($value["idAlumno"])  ?>">
-                          <i class="fa fa-trash"></i>
-                        </button>
+                        <a href="pdfAlumnos.php" target="_blank" class="btnPdfMatricula mr-2" style="border: none" data-id="<?php echo $value['idAlumno']; ?>">
+                        <i class="fas fa-file-pdf text-lg text-danger"></i>
+                        </a>
+                        <a class="btn-editarAlumno mr-2" data-toggle="modal" data-target="#modal-editar-alumno" idAlumno="<?php echo ($value["idAlumno"])  ?>">
+                        <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
+                        </a>
+                        <a class=" btnEliminarAlumno mr-2" data-toggle="modal" data-target="#modal-delete" idAlumnoE="<?php echo ($value["idAlumno"])  ?>">
+                        <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
+                        </a>
                       </td>
 
                     </tr>
@@ -264,3 +264,18 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var btnsPdfMatricula = document.querySelectorAll('.btnPdfMatricula');
+
+    btnsPdfMatricula.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var idAlumno = this.getAttribute('data-id');
+        var url = 'pdfAlumnos.php?id=' + idAlumno;
+        window.open(url, '_blank');
+      });
+    });
+  });
+</script>

@@ -71,12 +71,12 @@ $matricula = ctrMatricula::ctrListarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <!-- <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
+                          <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
                           <i class="fas fa-file-pdf text-lg text-danger"></i>
-                           </a> -->
-                          <!-- <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
+                           </a>
+                          <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
                             <i class="fa fa-eye text-lg text-primary"></i>
-                          </a> -->
+                          </a>
                           <a class="btnEditarmatricula mr-2" data-toggle="modal" data-target="#modal-editar-matricula" idMatricula="<?php echo ($value["idMatricula"])?>" style="border: none"  >
                             <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                           </a>

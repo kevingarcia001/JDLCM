@@ -42,7 +42,11 @@ if (isset($_SESSION['rol'])) {
                     </li>
                 <?php endif; ?>
 
+<<<<<<< HEAD
         
+=======
+          
+>>>>>>> 03d6007454b1c1a33bc03831e44ee77a5ac20893
 
                 <?php if (in_array('matricula', $permisos)) : ?>
                     <li class="nav-item">

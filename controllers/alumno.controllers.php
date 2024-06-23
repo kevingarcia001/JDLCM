@@ -179,6 +179,13 @@ class ctrAlumno{
     public static function ctrMostrarAlumnoPorId($id) {
         return mdlAlumnos::mdlMostrarAlumnoPorId($id);
     }
+
+    public static function mdlMostrarAlumnoPorId($id) {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos WHERE idAlumno = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Devolver como arreglo asociativo
+    }
     
     
 }
