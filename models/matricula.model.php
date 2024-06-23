@@ -177,7 +177,20 @@ class mdlMatricula
         $stmt->execute();
         return $stmt->fetch();
     }
+     
+    public static function getMatriculados() {
+        try {
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM datos_matricula");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error al obtener los datos de matrícula: " . $e->getMessage();
+        }
+    }
+    
 }
+
+
 
 
 

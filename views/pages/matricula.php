@@ -30,8 +30,16 @@ $matricula = ctrMatricula::ctrListarMatricula();
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped rounded-4  tablaMatricula">
                 <thead>
-                  <div class="col-md-6">
-                  <?php include_once "AddEditMatricula/AgregarAMatricula.php"; ?>
+                  <div class="row">
+                    </div>
+                    <div class="col-md-6">
+                      <?php include_once "AddEditMatricula/AgregarAMatricula.php"; ?>
+                   
+                    <button type="button" class="btn btn-danger text-white">
+                    <a href="pdf.php" target="_blank" class="text-white">
+                          Reporte Matricula
+                      </a>
+                    </button>
                   </div>
                   <tr class="text-bold text-uppercase text-white" style="background-color:#14173D">
                     <th>Id</th>
@@ -71,9 +79,9 @@ $matricula = ctrMatricula::ctrListarMatricula();
                       <td>
 
                         <div class="btn-group">
-                          <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
+                          <!-- <a href="pdf.php" target="_blank" class="btnPdfMatricula mr-2"  style="border: none" >
                           <i class="fas fa-file-pdf text-lg text-danger"></i>
-                           </a>
+                           </a> -->
                           <a class="border-none btn-ver-perfil mr-2" data-profile="alumno" data-toggle="modal"  data-target="#modal-view-matricula" style="border: none" >
                             <i class="fa fa-eye text-lg text-primary"></i>
                           </a>

@@ -35,7 +35,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('usuarios', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="usuarios" class="nav-link">
+                        <a href="index.php?pagina=usuarios" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Usuarios</p>
                         </a>
@@ -46,7 +46,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('matricula', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="matricula" class="nav-link">
+                        <a href="index.php?pagina=matricula" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Matrículas</p>
                         </a>
@@ -55,7 +55,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('alumnos', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="alumnos" class="nav-link">
+                        <a href="index.php?pagina=alumnos" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>Alumnos</p>
                         </a>
@@ -91,7 +91,7 @@ if (isset($_SESSION['rol'])) {
 
                 <?php if (in_array('salir', $permisos)) : ?>
                     <li class="nav-item">
-                        <a href="salir" class="nav-link">
+                        <a href="index.php?pagina=salir" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Salir</p>
                         </a>
