@@ -22,14 +22,6 @@ class mdlAlumnos{
         return $stmt->fetch();
     }
 
-    // reporte
-    static public function mdlreporte($id_alumno) {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos WHERE idAlumno = :id");
-        $stmt->bindParam(':id', $id_alumno, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     // CrearAlumno
     static public function mdlCrearAlumno($tabla, $datos){
         try {
@@ -137,6 +129,33 @@ class mdlAlumnos{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    
+    static public function mdlMostrarAlumnoPorIdDesdeVista($idAlumno) {
+        try {
+            $stmt = Conexion::conectar()->prepare("CALL vista_alumnos(:idAlumno)");
+            $stmt->bindParam(":idAlumno", $idAlumno, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
+    static public function mdlEliminarAlumnoPorSP($idAlumno) {
+        try {
+            $stmt = Conexion::conectar()->prepare("CALL sp_delete_alumno(:idAlumno)");
+            $stmt->bindParam(":idAlumno", $idAlumno, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return "ok";
+            } else {
+                return "error";
+            }
+        } catch (PDOException $e) {
+            return "error: " . $e->getMessage();
+        } finally {
+            $stmt->closeCursor();
+            $stmt = null;
+        }
+    }
     
 }

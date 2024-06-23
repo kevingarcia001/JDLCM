@@ -9,14 +9,14 @@ class ctrUsuarios
             $usuario = $_POST["log_user"];
             $contraseña = $_POST["log_pass"];
             $tabla = "usuario";
-            $item = "Nombre";
+            $item = "usuario";
 
             $respuesta = mdlUsuarios::mdlIniciarSecion($tabla, $item, $usuario);
 
-            if ($respuesta && $respuesta["Nombre"] == $usuario && $respuesta["Contrasena"] == $contraseña) {
+            if ($respuesta && $respuesta["Usuario"] == $usuario && $respuesta["Contrasena"] == $contraseña) {
                 $_SESSION["validarSession"] = "ok";
                 $_SESSION["idBackend"] = $respuesta["idUsuario"];
-                $_SESSION["Nickname"] = $respuesta["Nombre"];
+                $_SESSION["Nickname"] = $respuesta["Usuario"];
                 $_SESSION["rol"] = $respuesta["Rol_idRol"];
 
                 echo '<script> 

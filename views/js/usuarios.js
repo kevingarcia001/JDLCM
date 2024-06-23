@@ -63,7 +63,7 @@ $(document).ready(function() {
                                 confirmButtonText: "Cerrar"
                             }).then(function(result) {
                                 if (result.value) {
-                                    window.location = "index.php?pagina=usarios";
+                                    window.location = "index.php?pagina=usuarios";
                                 }
                             });
                         }

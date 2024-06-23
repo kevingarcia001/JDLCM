@@ -58,7 +58,7 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
                         <a class="btn-editarAlumno mr-2" data-toggle="modal" data-target="#modal-editar-alumno" idAlumno="<?php echo ($value["idAlumno"])  ?>">
                         <i class="fas fa-pencil-alt text-lg text-success .no-border"></i>
                         </a>
-                        <a class=" btnEliminarAlumno mr-2" data-toggle="modal" data-target="#modal-delete" idAlumnoE="<?php echo ($value["idAlumno"])  ?>">
+                        <a class="btnEliminarAlumno mr-2" idAlumnoE="<?php echo ($value["idAlumno"])  ?>">
                         <i class="fas fa-trash-alt text-lg text-center text-danger .no-border"></i>
                         </a>
                       </td>
@@ -83,9 +83,9 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
 <div class="modal fade" id="modal-lg">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Agregar Alumno</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header"  style="background-color:#14173D" >
+        <h4 class="modal-title  text-white text-uppercase">Agregar Alumno</h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -155,8 +155,8 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <div class="text-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
         </form>
@@ -176,9 +176,9 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
 <div class="modal fade" id="modal-editar-alumno">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Editar Alumno</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header" style="background-color:#14173D">
+        <h4 class="modal-title text-white text-uppercase "  >Editar Alumno</h4>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -249,8 +249,8 @@ $alumnos = ctrAlumno::ctrlistarAlumnos();
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <div class="text-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
 

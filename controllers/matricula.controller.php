@@ -78,7 +78,7 @@ class ctrMatricula
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location = "matriculas";
+                            window.location = "index.php?pagina=matriculas";
                         });
                     </script>';
             } else {
@@ -150,7 +150,7 @@ class ctrMatricula
                         showConfirmButton: false,
                         timer: 3000
                     }).then(() => {
-                        window.location = "matriculas";
+                        window.location = "index.php?pagina=matriculas";
                     });
                 </script>';
             } else {
@@ -158,7 +158,7 @@ class ctrMatricula
                     Swal.fire({
                         icon: "error",
                         title: "Error",
-                        text: "Error al actualizar Matrícula: ' . $respuesta . '",
+                        text: "Error al actualizar Matrícula: ",
                         showConfirmButton: false,
                         timer: 3000
                     });

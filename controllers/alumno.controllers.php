@@ -1,7 +1,5 @@
 <?php
 
-require_once 'models/alumnos.models.php';
-require_once 'tcpdf/tcpdf.php';
 class ctrAlumno{
     
     // controlador listar
@@ -16,47 +14,6 @@ class ctrAlumno{
         $tabla="alumnos";
         $respuesta = mdlAlumnos::mdlMostrarAlumno($tabla,$item, $valor);
         return $respuesta;
-    }
-
-    // pdf
-    static public function generarReporteAlumno($id_alumno) {
-        // Obtener datos del alumno desde el modelo
-        $alumno = mdlAlumnos::mdlreporte($id_alumno);
-
-        // Crear instancia de TCPDF
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-        // Configurar información del documento
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Nombre del Autor');
-        $pdf->SetTitle('Reporte de Alumno');
-        $pdf->SetSubject('Reporte personalizado por alumno');
-        $pdf->SetKeywords('TCPDF, PDF, ejemplo, alumno, reporte');
-
-        // Agregar una página
-        $pdf->AddPage();
-
-        // Configurar fuente y tamaño
-        $pdf->SetFont('helvetica', '', 12);
-
-        // Construir el contenido del PDF
-        $contenido = "
-            <h1>Reporte de Alumno</h1>
-            <p><strong>ID:</strong> {$alumno['idAlumno']}</p>
-            <p><strong>Nombre:</strong> {$alumno['PNombre']} {$alumno['SNombre']}</p>
-            <p><strong>Apellidos:</strong> {$alumno['PApellido']} {$alumno['SApellido']}</p>
-            <p><strong>Dirección:</strong> {$alumno['Direccion']}</p>
-            <p><strong>Fecha de Nacimiento:</strong> {$alumno['Fecha_Nacimiento']}</p>
-            <p><strong>Teléfono:</strong> {$alumno['Telefono']}</p>
-            <p><strong>Tutor ID:</strong> {$alumno['Tutor_idTutor']}</p>
-            <p><strong>Sexo ID:</strong> {$alumno['Sexo_idSexo']}</p>
-        ";
-
-        // Escribir el contenido en el PDF
-        $pdf->writeHTML($contenido, true, false, true, false, '');
-
-        // Cerrar y generar el PDF
-        $pdf->Output('reporte_alumno_'.$id_alumno.'.pdf', 'I');
     }
 
     // Crear
@@ -168,11 +125,11 @@ class ctrAlumno{
     }
     
 
-    static public function ctrEliminarAlumno($id){
-        $tabla="alumnos";
-        $respuesta=mdlAlumnos::mdlEliminarAlumno($tabla, $id);
-        return $respuesta;
-    }
+    // static public function ctrEliminarAlumno($id){
+    //     $tabla="alumnos";
+    //     $respuesta=mdlAlumnos::mdlEliminarAlumno($tabla, $id);
+    //     return $respuesta;
+    // }
 
 
 
@@ -187,5 +144,9 @@ class ctrAlumno{
         return $stmt->fetch(PDO::FETCH_ASSOC); // Devolver como arreglo asociativo
     }
     
-    
+     // Método para eliminar un alumno
+     public static function ctrEliminarAlumno($idAlumno) {
+        $respuesta = mdlAlumnos::mdlEliminarAlumnoPorSP($idAlumno);
+        echo $respuesta; // Devolver respuesta al cliente (puede ser "ok", "error", u otro mensaje según necesidad)
+    }
 }

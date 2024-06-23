@@ -13,7 +13,8 @@ class AjaxAlumno {
     }
     
     public $idEliminar;
-     public function AjaxEliminarAlumno(){
+    public function AjaxEliminarAlumno() {
+        // Llamar al método del controlador para eliminar el alumno
         $respuesta = ctrAlumno::ctrEliminarAlumno($this->idEliminar);
         echo $respuesta;
     }
