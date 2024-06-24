@@ -123,19 +123,32 @@ class mdlMatricula
     // eliminar
     static public function mdlEliminarMatricula($tabla, $id) {
         try {
-            $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idMatricula = :idMatricula");
+            $conexion = Conexion::conectar();
+            $conexion->beginTransaction();
+    
+            // Eliminar registros dependientes en la tabla `nota`
+            $stmt = $conexion->prepare("DELETE FROM nota WHERE Matricula_idMatricula = :idMatricula");
+            $stmt->bindParam(":idMatricula", $id, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            // Eliminar la matrícula
+            $stmt = $conexion->prepare("DELETE FROM $tabla WHERE idMatricula = :idMatricula");
             $stmt->bindParam(":idMatricula", $id, PDO::PARAM_INT);
             if ($stmt->execute()) {
+                $conexion->commit();
                 return "ok";
             } else {
+                $conexion->rollBack();
                 return "error";
             }
         } catch (PDOException $e) {
+            $conexion->rollBack();
             return "error: " . $e->getMessage();
         } finally {
             $stmt = null;
         }
     }
+    
 
 
     public static function obtenerMatriculaPorId($idMatricula) {
