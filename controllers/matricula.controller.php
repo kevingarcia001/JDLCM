@@ -81,7 +81,7 @@ class ctrMatricula
                             showConfirmButton: false,
                             timer: 3000
                         }).then(() => {
-                            window.location = "index.php?pagina=matriculas";
+                            window.location = "index.php?pagina=matricula";
                         });
                     </script>';
             } else {
@@ -153,7 +153,7 @@ class ctrMatricula
                         showConfirmButton: false,
                         timer: 3000
                     }).then(() => {
-                        window.location = "index.php?pagina=matriculas";
+                        window.location = "index.php?pagina=matricula";
                     });
                 </script>';
             } else {

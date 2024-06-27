@@ -206,7 +206,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="CodMatricula" class="text-uppercase"><i class="fas fa-phone"></i> Código Matrícula</label>
+                                        <label for="CodMatricula" class="text-uppercase"><i class="">#</i> Código Matrícula</label>
                                         <input type="text" name="CodMatricula" class="form-control text-uppercase" id="CodMatricula" placeholder="Código Matrícula">
                                     </div>
                                         <div class="form-group">

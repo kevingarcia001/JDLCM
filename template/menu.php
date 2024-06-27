@@ -81,12 +81,12 @@ if (isset($_SESSION['rol'])) {
                 <?php endif; ?>
 
                 <?php if (in_array('hojamatricula', $permisos)) : ?>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="hojamatricula" class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>Hoja de Matrícula</p>
                         </a>
-                    </li>
+                    </li> -->
                 <?php endif; ?>
 
                 <?php if (in_array('salir', $permisos)) : ?>

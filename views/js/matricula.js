@@ -16,31 +16,30 @@ $(document).ready(function() {
             dataType: "json",
             success: function(respuesta) {
                 console.log(respuesta); 
-
-                // Asignar datos a los campos del formulario de edición
-                $("#edit-id").val(respuesta.idMatricula);
-                $("#edit-pnombre").val(respuesta.PNombre);
-                $("#edit-snombre").val(respuesta.SNombre);
-                $("#edit-papellido").val(respuesta.PApellido);
-                $("#edit-sapellido").val(respuesta.SApellido);
-                $("#edit-fecha").val(respuesta.Fecha_Nacimiento);
-                $("#edit-direccion").val(respuesta.Direccion);
-                $("#edit-telefono").val(respuesta.Telefono);
-                $("#edit-sexo").val(respuesta.Sexo);
-                $("#edit-t_pnombre").val(respuesta.T_PNombre);
-                $("#edit-t_snombre").val(respuesta.T_SNombre);
-                $("#edit-t_papellido").val(respuesta.T_PApellido);
-                $("#edit-t_sapellido").val(respuesta.T_SApellido);
-                $("#edit-t_cedula").val(respuesta.T_Cedula);
-                $("#edit-t_direccion").val(respuesta.T_Direccion);
-                $("#edit-t_telefono").val(respuesta.T_Telefono);
-                $("#edit-t_parentesco").val(respuesta.T_Parentesco);
-                $("#edit-t_sexo").val(respuesta.T_Sexo);
-                $("#edit-anio_academico").val(respuesta.Anio_Academico_idAnio_Academico);
-                $("#edit-grado").val(respuesta.GradoSeccion_idGradoSeccion);
-                $("#edit-turno").val(respuesta.Turno_idTurno);
+                $('#matriculaE').val(respuesta.idMatricula);
+                $('#edit-pnombre').val(respuesta.alumnoPNombre);
+                $('#edit-snombre').val(respuesta.alumnoSNombre);
+                $('#edit-papellido').val(respuesta.alumnoPApellido);
+                $('#edit-sapellido').val(respuesta.alumnoSApellido);
+                $('#edit-fecha').val(respuesta.alumnoFechaNacimiento);
+                $('#edit-direccion').val(respuesta.alumnoDireccion);
+                $('#edit-telefono').val(respuesta.alumnoTelefono);
+                $('#edit-sexo').val(respuesta.Sexo_idSexo);  // Ajusta si es necesario
+                $('#edit-t_pnombre').val(respuesta.tutorPNombre);
+                $('#edit-t_snombre').val(respuesta.tutorSNombre);
+                $('#edit-t_papellido').val(respuesta.tutorPApellido);
+                $('#edit-t_sapellido').val(respuesta.tutorSApellido);
+                $('#edit-t_fecha').val(respuesta.tutorFechaNacimiento); // Ajusta si es necesario
+                $('#edit-t_cedula').val(respuesta.tutorCedula);
+                $('#edit-t_direccion').val(respuesta.tutorDireccion);
+                $('#edit-t_telefono').val(respuesta.tutorTelefono);
+                $('#edit-t_parentesco').val(respuesta.tutorParentesco); // Ajusta si es necesario
+                $('#edit-fechaM').val(respuesta.Fecha);
+                $('#edit-curso').val(respuesta.grado);
+                $('#edit-jornada').val(respuesta.Turno);
+                $('#edit-anio').val(respuesta.Anio_Academico);
                 
-                // Mostrar el modal de edición
+                // Mostrar el modal
                 $('#modal-editar-matricula').modal('show');
             },
             error: function(xhr, status, error) {
@@ -50,6 +49,7 @@ $(document).ready(function() {
         });
     });
 });
+
 
 
 $(document).ready(function() {

@@ -8,9 +8,8 @@ class AjaxMatricula {
     public $idMatricula;
     
     public function ajaxEditarMatricula() {
-        $item = "matricula";
-        $valor = $this->idMatricula;
-        $respuesta = ctrMatricula::ctrObtenerMatricula($valor, $item);
+        $idMatricula = $this->idMatricula;
+        $respuesta = ctrMatricula::ctrObtenerMatricula($idMatricula);
         echo json_encode($respuesta);
     }
 
@@ -20,10 +19,10 @@ class AjaxMatricula {
     }
 }
 
-if (isset($_POST["idMatricula"])) {
-    $editar = new AjaxMatricula();
-    $editar->idMatricula = $_POST["idMatricula"];
-    $editar->ajaxEditarMatricula();
+if (isset($_POST['idMatricula'])) {
+    $editarMatricula = new AjaxMatricula();
+    $editarMatricula->idMatricula = $_POST['idMatricula'];
+    $editarMatricula->ajaxEditarMatricula();
 }
 
 if (isset($_POST["idMatriculaE"])) {
