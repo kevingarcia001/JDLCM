@@ -182,18 +182,21 @@ class mdlMatricula
             JOIN tutor t ON a.Tutor_idTutor = t.idTutor
             JOIN turno ta ON m.Turno_idTurno = ta.idTurno
             JOIN anio_academico aa ON m.Anio_Academico_idAnio_Academico = aa.idAnio_Academico
-            JOIN seccion s ON m.GradoSeccion_idGradoSeccion = s.idSeccion
-            JOIN grado g ON s.Grado_idGrado = g.idGrado
+            JOIN gradoseccion gs ON m.GradoSeccion_idGradoSeccion = gs.idGradoSeccion
+            JOIN seccion s ON gs.Seccion_idSeccion = s.idSeccion
+            JOIN grado g ON gs.Grado_idGrado = g.idGrado
             WHERE m.idMatricula = :idMatricula
         ");
         $stmt->bindParam(":idMatricula", $idMatricula, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
     }
+    
+    
      
     public static function getMatriculados() {
         try {
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM datos_matricula");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM vw_matriculados");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {

@@ -1,8 +1,6 @@
 <?php
 
 $matricula = ctrMatricula::ctrListarMatricula();
-// var_dump($matricula);
-
 
 ?>
 
@@ -35,7 +33,7 @@ $matricula = ctrMatricula::ctrListarMatricula();
                     <div class="col-md-6">
                       <?php include_once "AddEditMatricula/AgregarAMatricula.php"; ?>
                    
-                    <button type="button" class="btn btn-danger text-white">
+                    <button type="button" class="btn btn-sm btn-danger text-white">
                     <a href="pdf.php" target="_blank" class="text-white">
                           Reporte Matricula
                       </a>

@@ -3,10 +3,11 @@
 class ctrMatricula
 {
 
-    static public function ctrListarMatricula(){
-       $tabla ="matricula";
-       $respuesta = mdlMatricula::mdlListraMatricula($tabla);
-       return $respuesta;
+    static public function ctrListarMatricula()
+    {
+        $tabla = "matricula";
+        $respuesta = mdlMatricula::mdlListraMatricula($tabla);
+        return $respuesta;
     }
 
     // muestra la matricula
@@ -26,9 +27,11 @@ class ctrMatricula
 
 
 
-    static public function ctrCrearMatricula() {
+    static public function ctrCrearMatricula()
+    {
         if (
-            isset($_POST["pnombre"])) {
+            isset($_POST["pnombre"])
+        ) {
             // Datos del alumno
             $datosAlumno = array(
                 "PNombre" => htmlspecialchars($_POST["pnombre"]),
@@ -40,7 +43,7 @@ class ctrMatricula
                 "Telefono" => htmlspecialchars($_POST["telefono"]),
                 "Sexo_idSexo" => htmlspecialchars($_POST["sexo"])
             );
-    
+
             // Datos del tutor
             $datosTutor = array(
                 "PNombre" => htmlspecialchars($_POST["t_pnombre"]),
@@ -53,23 +56,23 @@ class ctrMatricula
                 "Sexo_idSexo" => htmlspecialchars($_POST["t_sexo"]),
                 "Parentesco_idParentesco" => htmlspecialchars($_POST["t_parentesco"])
             );
-    
+
             // Datos de la matrícula
             $datosMatricula = array(
-                "CodMatricula" =>htmlspecialchars($_POST["CodMatricula"]), 
+                "CodMatricula" => htmlspecialchars($_POST["CodMatricula"]),
                 "Anio_Academico_idAnio_Academico" => htmlspecialchars($_POST["anio_academico"]),
                 "GradoSeccion_idGradoSeccion" => htmlspecialchars($_POST["grado"]),
                 "Turno_idTurno" => htmlspecialchars($_POST["turno"]),
                 "Alumnos_idAlumno" => null, // Se asignará en el modelo después de insertar el alumno
                 "Fecha" => date('Y-m-d') // O la fecha que necesites
             );
-    
+
             $tablaMatricula = "matricula";
             $tablaAlumno = "alumnos";
             $tablaTutor = "tutor";
-    
+
             $respuesta = mdlMatricula::mdlCrearMatricula($tablaMatricula, $datosMatricula, $tablaAlumno, $datosAlumno, $tablaTutor, $datosTutor);
-    
+
             if ($respuesta == "ok") {
                 echo '<script>
                         Swal.fire({
@@ -94,7 +97,7 @@ class ctrMatricula
             }
         }
     }
-    
+
 
     static public function ctrEditarMatricula()
     {
@@ -175,9 +178,8 @@ class ctrMatricula
         return $respuesta;
     }
 
-   
-        public static function ctrObtenerMatricula($idMatricula) {
-            return mdlMatricula::obtenerMatriculaPorId($idMatricula);
-        }
-    
+
+    public static function ctrObtenerMatricula($idMatricula) {
+        return mdlMatricula::obtenerMatriculaPorId($idMatricula);
+    }
 }

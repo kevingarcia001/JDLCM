@@ -10,7 +10,7 @@ class AjaxMatricula {
     public function ajaxEditarMatricula() {
         $item = "matricula";
         $valor = $this->idMatricula;
-        $respuesta = ctrMatricula::ctrMostrarMatricula($valor, $item);
+        $respuesta = ctrMatricula::ctrObtenerMatricula($valor, $item);
         echo json_encode($respuesta);
     }
 

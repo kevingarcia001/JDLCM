@@ -16,12 +16,14 @@ $(document).ready(function() {
             dataType: "json",
             success: function(respuesta) {
                 console.log(respuesta); 
-                $("#matriculaE").val(respuesta.idMatricula);
+
+                // Asignar datos a los campos del formulario de edición
+                $("#edit-id").val(respuesta.idMatricula);
                 $("#edit-pnombre").val(respuesta.PNombre);
                 $("#edit-snombre").val(respuesta.SNombre);
                 $("#edit-papellido").val(respuesta.PApellido);
                 $("#edit-sapellido").val(respuesta.SApellido);
-                $("#fechaedit-fecha").val(respuesta.Fecha_Nacimiento);
+                $("#edit-fecha").val(respuesta.Fecha_Nacimiento);
                 $("#edit-direccion").val(respuesta.Direccion);
                 $("#edit-telefono").val(respuesta.Telefono);
                 $("#edit-sexo").val(respuesta.Sexo);
@@ -36,9 +38,15 @@ $(document).ready(function() {
                 $("#edit-t_sexo").val(respuesta.T_Sexo);
                 $("#edit-anio_academico").val(respuesta.Anio_Academico_idAnio_Academico);
                 $("#edit-grado").val(respuesta.GradoSeccion_idGradoSeccion);
-                $("#edit-turno").val(respuesta.edit-turno);
+                $("#edit-turno").val(respuesta.Turno_idTurno);
+                
+                // Mostrar el modal de edición
                 $('#modal-editar-matricula').modal('show');
-            }   
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al obtener datos de la matrícula:", error);
+                // Manejar el error si es necesario
+            }
         });
     });
 });
